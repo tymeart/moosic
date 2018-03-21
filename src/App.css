@@ -1,1 +1,9 @@
+.App-title {
+  text-align: center;
+}
 
+.center {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
