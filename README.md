@@ -1,1 +1,1 @@
-A music player built in React.
+A web music player built in React.
