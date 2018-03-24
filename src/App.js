@@ -4,6 +4,17 @@ import Player from './Player';
 import Playlist from './Playlist';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      songTitle: ''
+    }
+  }
+
+  handleSongClick = (e) => {
+    console.log(e.target.innerHTML);
+  }
+
   render() {
     return (
       <div className="App">
@@ -12,7 +23,9 @@ class App extends Component {
         </header>
         <main>
           <Player />
-          <Playlist />
+          <Playlist
+            onSongClick={this.handleSongClick}
+          />
         </main>
       </div>
     );

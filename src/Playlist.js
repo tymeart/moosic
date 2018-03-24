@@ -1,9 +1,19 @@
 import React from 'react';
 
 
-let Playlist = () => {
+let Playlist = (props) => {
   let songs = ['Sympathy', 'Introduced Species', 'Mirrors', 'Same Soul'];
-  let listItems = songs.map(song => <li key={song}>{song}</li>);
+  let listItems = songs.map(song => {
+    return (
+      <li
+        key={song}
+        onClick={props.onSongClick}
+      >
+        {song}
+      </li>
+    );
+  });
+
   return (
     <div className="center">
       <ul>
