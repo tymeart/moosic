@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-let Playlist = (props) => {
+const Playlist = (props) => {
   let songs = ['Sympathy', 'Introduced Species', 'Mirrors', 'Same Soul'];
   let listItems = songs.map(song => {
     return (

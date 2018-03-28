@@ -1,6 +1,6 @@
 import React from 'react';
 
-let Player = (src) => {
+const Player = (src) => {
   return (
     <div className="center">
       <audio controls="controls">
