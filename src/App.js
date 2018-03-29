@@ -22,14 +22,18 @@ class App extends Component {
     const url = window.location.href;
     const authCode = url.split('code=')[1];
 
-    fetch(`https://accounts.spotify.com/api/token?grant_type=authorization_code&code=${authCode}&redirect_uri=${REDIRECT_URI}`,
+    fetch('https://accounts.spotify.com/api/token',
       {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        },
         method: 'POST',
         body: {
           grant_type: 'authorization_code',
           code: authCode,
           redirect_uri: REDIRECT_URI,
-          
+          client_id: CLIENT_ID,
+          client_secret: CLIENT_SECRET
         }
       })
       .then(res => console.log(res));
