@@ -4,21 +4,17 @@ import Player from './Player';
 import Playlist from './Playlist';
 import Login from './Login';
 import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI } from './hidden';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from "react-router-dom";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      songTitle: '',
-      isLoggedIn: false
-    }
-  }
-
-  handleSongClick = (e) => {
-    console.log(e.target.innerHTML);
-  }
-
-  getAuthorized = () => {
+const authStatus = {
+  isAuthenticated: false,
+  authenticate() {
     const url = window.location.href;
     const authCode = url.split('code=')[1];
 
@@ -37,28 +33,63 @@ class App extends Component {
         }
       })
       .then(res => console.log(res));
+      // this.isAuthenticated = true
+  },
+  signout() {
+    this.isAuthenticated = false;
+  }
+};
+
+const PrivateRoute = ({component: Component, ...rest}) => {
+  return (
+    <Route
+      {...rest}
+      render={props => (
+        authStatus.isAuthenticated === true
+        ? <Component {...props} />
+        : <Redirect to="/login" />
+      )}
+    />
+  );
+}
+
+const MainContent = () => {
+  return (
+    <div>
+      <header className="App-header">
+        <h1 className="App-title">a moosic player</h1>
+      </header>
+      <main>
+        <Player />
+        <Playlist
+          onSongClick={this.handleSongClick}
+        />
+      </main>
+    </div>
+  );
+}
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      songTitle: '',
+      isLoggedIn: false
+    }
+  }
+
+  handleSongClick = (e) => {
+    console.log(e.target.innerHTML);
   }
 
   render() {
     return (
-      <div className="App">
-        {!this.state.isLoggedIn && <Login />}
-        {this.state.isLoggedIn &&
-          (
-          <div>
-            <header className="App-header">
-              <h1 className="App-title">a moosic player</h1>
-            </header>
-            <main>
-              <Player />
-              <Playlist
-                onSongClick={this.handleSongClick}
-              />
-            </main>
-          </div>
-          )
-        }
-      </div>
+      <Router>
+        <div>
+          <Route path="/login" component={Login} />
+          <PrivateRoute path="/protected" component={MainContent} />
+        </div>
+      </Router>
     );
   }
 }
