@@ -14,7 +14,7 @@ import {
 
 const authStatus = {
   isAuthenticated: false,
-  authenticate() {
+  authenticate(cb) {
     const url = window.location.href;
     const authCode = url.split('code=')[1];
 
@@ -32,13 +32,30 @@ const authStatus = {
           client_secret: CLIENT_SECRET
         }
       })
-      .then(res => console.log(res));
+      .then(res => {
+        console.log(res);
+        // cb ?
+      });
       // this.isAuthenticated = true
   },
   signout() {
     this.isAuthenticated = false;
   }
 };
+
+const AuthButton = withRouter(({ history })) => {
+  return (
+    authStatus.isAuthenticated ? (
+      <p>
+        <button onClick={() => {
+          authStatus.signout(() => history.push('/'));
+        }}>Sign Out</button>
+      </p>
+    ) : (
+      <p>You're not logged in.</p>
+    )
+  );
+}
 
 const PrivateRoute = ({component: Component, ...rest}) => {
   return (
@@ -47,7 +64,10 @@ const PrivateRoute = ({component: Component, ...rest}) => {
       render={props => (
         authStatus.isAuthenticated === true
         ? <Component {...props} />
-        : <Redirect to="/login" />
+        : <Redirect to={{
+            pathName: '/login',
+            location: { from: props.location }
+          }} />
       )}
     />
   );
@@ -86,6 +106,7 @@ class App extends Component {
     return (
       <Router>
         <div>
+          <AuthButton />
           <Route path="/login" component={Login} />
           <PrivateRoute path="/protected" component={MainContent} />
         </div>
