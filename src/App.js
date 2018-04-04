@@ -3,38 +3,33 @@ import './App.css';
 import Player from './Player';
 import Playlist from './Playlist';
 import Login from './Login';
-import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI } from './hidden';
+// import { CLIENT_ID, REDIRECT_URI } from './hidden';
 import {
   BrowserRouter as Router,
   Route,
-  Link,
-  Redirect,
-  withRouter
+  Switch,
+  Redirect
 } from "react-router-dom";
 
-const authStatus = {
+export const authStatus = {
   isAuthenticated: false,
-  authenticate(cb) {
-    const url = window.location.href;
-    const authCode = url.split('code=')[1];
+  authenticate() {
+    let accessToken = '';
+    if (window.location.hash) {
+      const url = window.location.hash;
+      accessToken = url.split('&')[0].split('=')[1];
+    } else {
+      console.log('ACCESS DENIED');
+    }
 
-    fetch('https://accounts.spotify.com/api/token',
+    fetch('https://api.spotify.com/v1/artists/0OdUWJ0sBjDrqHygGUXeCF',
       {
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-        },
-        method: 'POST',
-        body: {
-          grant_type: 'authorization_code',
-          code: authCode,
-          redirect_uri: REDIRECT_URI,
-          client_id: CLIENT_ID,
-          client_secret: CLIENT_SECRET
+          'Authorization': `Bearer ${accessToken}`
         }
       })
       .then(res => {
         console.log(res);
-        // cb ?
       });
       // this.isAuthenticated = true
   },
@@ -43,19 +38,19 @@ const authStatus = {
   }
 };
 
-const AuthButton = withRouter(({ history })) => {
-  return (
-    authStatus.isAuthenticated ? (
-      <p>
-        <button onClick={() => {
-          authStatus.signout(() => history.push('/'));
-        }}>Sign Out</button>
-      </p>
-    ) : (
-      <p>You're not logged in.</p>
-    )
-  );
-}
+// const AuthButton = withRouter(({ history })) => {
+//   return (
+//     authStatus.isAuthenticated ? (
+//       <p>
+//         <button onClick={() => {
+//           authStatus.signout(() => history.push('/'));
+//         }}>Sign Out</button>
+//       </p>
+//     ) : (
+//       <p>You're not logged in.</p>
+//     )
+//   );
+// }
 
 const PrivateRoute = ({component: Component, ...rest}) => {
   return (
@@ -105,11 +100,10 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
-          <AuthButton />
+        <Switch>
           <Route path="/login" component={Login} />
-          <PrivateRoute path="/protected" component={MainContent} />
-        </div>
+          <PrivateRoute path="/" component={MainContent} />
+        </Switch>
       </Router>
     );
   }
