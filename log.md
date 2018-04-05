@@ -1,5 +1,8 @@
 My thoughts and struggles while building this project.
 
+### April 5th, 2018
+With help, I set up basic action and reducer to store the access token being returned from Spotify as well as the user status (logged in or not). It was suggested that I create an intermediary component to redirect to when the user clicks on the login button and after Spotify returns an access token. I'm still trying to figure out how to redirect with React Router so hitting the home page will redirect to /login if the user is not logged in.
+
 ### April 3rd, 2018
 I discovered that one of the alternative auth flows Spotify has is the implicit grant flow, which doesn't require a secret key. It's about one step simpler than the authorization code flow that I was trying to implement, so things are a bit simpler now. I'm still trying to figure out how to redirect using React Router though.
 

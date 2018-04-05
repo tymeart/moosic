@@ -11,6 +11,7 @@ import {
   Redirect
 } from "react-router-dom";
 import PropTypes from 'prop-types';
+import { logIn } from './actions/index';
 
 export const authStatus = {
   isAuthenticated: false,
@@ -53,36 +54,42 @@ export const authStatus = {
 //   );
 // }
 
-const PrivateRoute = ({component: Component, ...rest}) => {
-  return (
-    <Route
-      {...rest}
-      render={props => (
-        authStatus.isAuthenticated === true
-        ? <Component {...props} />
-        : <Redirect to={{
-            pathName: '/login',
-            location: { from: props.location }
-          }} />
-      )}
-    />
-  );
-}
+// const PrivateRoute = ({component: Component, ...rest}) => {
+//   return (
+//     <Route
+//       {...rest}
+//       render={props => (
+//         authStatus.isAuthenticated === true
+//         ? <Component {...props} />
+//         : <Redirect to={{
+//             pathName: '/login',
+//             location: { from: props.location }
+//           }} />
+//       )}
+//     />
+//   );
+// }
 
-const MainContent = () => {
-  return (
-    <div>
-      <header className="App-header">
-        <h1 className="App-title">a moosic player</h1>
-      </header>
-      <main>
-        <Player />
-        <Playlist
-          onSongClick={this.handleSongClick}
-        />
-      </main>
-    </div>
-  );
+class MainContent extends Component {
+  componentDidMount() {
+    this.props.history.push('/login');
+  }
+
+  render() {
+    return (
+      <div>
+        <header className="App-header">
+          <h1 className="App-title">a moosic player</h1>
+        </header>
+        <main>
+          <Player />
+          <Playlist
+            onSongClick={this.handleSongClick}
+          />
+        </main>
+      </div>
+    );
+  }
 }
 
 class Middle extends Component {
@@ -99,8 +106,8 @@ class Middle extends Component {
     if (window.location.hash) {
       const url = window.location.hash;
       accessToken = url.split('&')[0].split('=')[1];
-      console.log(url);
-      console.log(accessToken);
+      this.props.store.dispatch(logIn(accessToken));
+      this.props.history.push('/');
     } else {
       console.log('ACCESS DENIED');
     }
@@ -116,13 +123,6 @@ class Middle extends Component {
 }
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      songTitle: '',
-      isLoggedIn: false
-    }
-  }
 
   handleSongClick = (e) => {
     console.log(e.target.innerHTML);
@@ -130,11 +130,11 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
+      <Router history={history}>
         <Switch>
           <Route path="/login" component={Login} />
-          <Route path="/middle" component={Middle} />
-          <PrivateRoute path="/" component={MainContent} />
+          <Route path="/middle" render={() => <Middle store={this.props.store} />} />
+          <Route path="/" render={() => <MainContent history={history} /> } />
         </Switch>
       </Router>
     );
