@@ -10,6 +10,7 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 export const authStatus = {
   isAuthenticated: false,
@@ -84,6 +85,36 @@ const MainContent = () => {
   );
 }
 
+class Middle extends Component {
+  static contextTypes = {
+        router: PropTypes.object
+    }
+
+  constructor(props, context) {
+      super(props, context);
+  }
+
+  componentDidMount() {
+    let accessToken = '';
+    if (window.location.hash) {
+      const url = window.location.hash;
+      accessToken = url.split('&')[0].split('=')[1];
+      console.log(url);
+      console.log(accessToken);
+    } else {
+      console.log('ACCESS DENIED');
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        The intermediary component!
+      </div>
+    );
+  }
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -102,6 +133,7 @@ class App extends Component {
       <Router>
         <Switch>
           <Route path="/login" component={Login} />
+          <Route path="/middle" component={Middle} />
           <PrivateRoute path="/" component={MainContent} />
         </Switch>
       </Router>

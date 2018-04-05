@@ -1,5 +1,8 @@
 My thoughts and struggles while building this project.
 
+### April 3rd, 2018
+I discovered that one of the alternative auth flows Spotify has is the implicit grant flow, which doesn't require a secret key. It's about one step simpler than the authorization code flow that I was trying to implement, so things are a bit simpler now. I'm still trying to figure out how to redirect using React Router though.
+
 ### March 30th, 2018
 I feel kind of bad that I haven't figured out the auth process yet. Now I've followed the basic authorization example in the React Router docs, but I need to modify it to fit the Spotify auth process of sending an initial request to get the authorization code and then sending another request to get the access token.
 
