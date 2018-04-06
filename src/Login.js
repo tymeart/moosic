@@ -1,26 +1,8 @@
 import React, { Component } from 'react';
-// import { Redirect } from 'react-router-dom';
 import { CLIENT_ID, REDIRECT_URI } from './hidden';
-// import authStatus from './App';
 
 class Login extends Component {
-  // state = {
-  //   redirectToReferrer: false
-  // }
-  //
-  // login = () => {
-  //   authStatus.authenticate(
-  //     this.setState(() => {redirectToReferrer: true})
-  //   );
-  // }
-
   render() {
-    // const { from } = this.props.location.state || { from: {pathName: "/"} }
-    // const { redirectToReferrer } = this.state;
-    // if (redirectToReferrer === true) {
-    //   <Redirect to={from} />
-    // }
-
     return (
       <div>
         <h1>Welcome to Moosic</h1>
