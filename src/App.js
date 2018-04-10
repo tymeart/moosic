@@ -47,7 +47,7 @@ class App extends Component {
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/middle" render={() => <Middle store={this.props.store} />} />
-          <Route path="/" render={() => <MainContent /> } />
+          <Route path="/" render={() => <MainContent store={this.props.store}/> } />
         </Switch>
       </Router>
     );

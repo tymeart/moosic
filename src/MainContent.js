@@ -8,8 +8,10 @@ export default class MainContent extends Component {
     router: PropTypes.object
   }
 
-  componentDidMount() {
-    this.context.router.history.push('/login');
+  componentWillMount() {
+    if (this.props.store.getState().isLoggedIn === false) {
+      this.context.router.history.push('/login');
+    }
   }
 
   render() {
