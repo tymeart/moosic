@@ -15,6 +15,11 @@ export default class MainContent extends Component {
     }
   }
 
+  logOutAndRedirect = () => {
+    this.props.store.dispatch(logOut());
+    this.context.router.history.push('/login');
+  }
+
   render() {
     return (
       <div>
@@ -22,7 +27,7 @@ export default class MainContent extends Component {
           <h1 className="App-title">a moosic player</h1>
         </header>
         <main>
-          <button onClick={() => this.props.store.dispatch(logOut())}>Log Out</button>
+          <button onClick={this.logOutAndRedirect}>Log Out</button>
           <Player />
           <Playlist
             onSongClick={this.handleSongClick}
