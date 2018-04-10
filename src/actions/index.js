@@ -6,3 +6,9 @@ export const logIn = (accessToken) => {
     token: accessToken
   };
 };
+
+export const logOut = () => {
+  return {
+    type: types.LOG_OUT
+  };
+}

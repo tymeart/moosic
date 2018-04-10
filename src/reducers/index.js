@@ -12,7 +12,13 @@ const userReducer = (state = initialState, action) => {
         ...state,
         accessToken: action.token,
         isLoggedIn: true
-      }
+      };
+    case types.LOG_OUT:
+      return {
+        ...state,
+        accessToken: '',
+        isLoggedIn: false
+      };
     default:
       return initialState;
   }

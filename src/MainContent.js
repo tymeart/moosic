@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Player from './Player';
 import Playlist from './Playlist';
+import { logOut } from './actions/index';
 
 export default class MainContent extends Component {
   static contextTypes = {
@@ -21,6 +22,7 @@ export default class MainContent extends Component {
           <h1 className="App-title">a moosic player</h1>
         </header>
         <main>
+          <button onClick={() => this.props.store.dispatch(logOut())}>Log Out</button>
           <Player />
           <Playlist
             onSongClick={this.handleSongClick}
