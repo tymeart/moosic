@@ -4,7 +4,7 @@ import { logIn } from './actions/index';
 
 export default class Middle extends Component {
   static contextTypes = {
-      router: PropTypes.object
+    router: PropTypes.object
   }
 
   componentDidMount() {
@@ -12,6 +12,7 @@ export default class Middle extends Component {
     if (window.location.hash) {
       const url = window.location.hash;
       accessToken = url.split('&')[0].split('=')[1];
+      
       this.props.store.dispatch(logIn(accessToken));
       this.context.router.history.push('/');
     } else {

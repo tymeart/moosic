@@ -1,5 +1,8 @@
 My thoughts and struggles while building this project.
 
+### April 10th, 2018
+I'm just about done with basic auth. The user can now log in and out and will be redirected to the correct paths accordingly. Looking at the examples in the React Router docs makes me feel like the way I've structured this process is not the best, but it works right now.
+
 ### April 5th, 2018
 With help, I set up basic action and reducer to store the access token being returned from Spotify as well as the user status (logged in or not). It was suggested that I create an intermediary component to redirect to when the user clicks on the login button and after Spotify returns an access token. I'm still trying to figure out how to redirect with React Router so hitting the home page will redirect to /login if the user is not logged in.
 
