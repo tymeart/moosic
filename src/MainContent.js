@@ -33,18 +33,31 @@ export default class MainContent extends Component {
 
   render() {
     return (
-      <div>
-        <header className="App-header">
-          <h1 className="App-title">a moosic player</h1>
-        </header>
-        <main>
-          <button onClick={this.logOutAndRedirect}>Log Out</button>
-          <Player />
-          <Playlist
-            onSongClick={this.handleSongClick}
-          />
-          <button onClick={this.getArtist}>Get Artist</button>
-        </main>
+      <div className="App">
+        <div className="App-main">
+          <header className="App-header">
+            <nav>
+              <h1 className="App-title">a moosic player</h1>
+              <a href="/search">Search</a>
+              <a href="/browse">Home</a>
+              <a href="/collection">Your Music</a>
+              <h2>Recently Played</h2>
+              <ul>
+                <li>Unimagined</li>
+                <li>Ground Dweller</li>
+                <li>Before I Cave In</li>
+              </ul>
+            </nav>
+          </header>
+          <main>
+            <button onClick={this.logOutAndRedirect}>Log Out</button>
+            <Playlist
+              onSongClick={this.handleSongClick}
+            />
+            <button onClick={this.getArtist}>Get Artist</button>
+          </main>
+        </div>
+        <Player />
       </div>
     );
   }

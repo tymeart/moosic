@@ -1,9 +1,40 @@
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
+.App-main {
+  background-color: lightblue;
+  display: flex;
+  height: calc(100vh - 100px);
+}
+
+.App-header {
+  background-color: tomato;
+  width: 200px;
+}
+
 .App-title {
   text-align: center;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  overflow-y: auto;
 }
 
 .center {
   align-items: center;
   display: flex;
   flex-direction: column;
+}
+
+.player {
+  background-color: lightgreen;
+  height: 100px;
+  justify-content: center;
 }
