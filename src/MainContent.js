@@ -20,6 +20,17 @@ export default class MainContent extends Component {
     this.context.router.history.push('/login');
   }
 
+  getArtist = () => {
+    fetch('https://api.spotify.com/v1/artists/2XziUthG3Ug3eiWuE5KRsp/',
+      {
+        headers: {
+          'Authorization': `Bearer ${this.props.store.getState().accessToken}`
+        }
+      })
+    .then(res => res.json())
+    .then(data => console.log(data));
+  }
+
   render() {
     return (
       <div>
@@ -32,6 +43,7 @@ export default class MainContent extends Component {
           <Playlist
             onSongClick={this.handleSongClick}
           />
+          <button onClick={this.getArtist}>Get Artist</button>
         </main>
       </div>
     );
