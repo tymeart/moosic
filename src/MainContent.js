@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Player from './Player';
 import Playlist from './Playlist';
 import { logOut } from './actions/index';
+import { Link } from 'react-router-dom';
 
 export default class MainContent extends Component {
   static contextTypes = {
@@ -13,6 +14,7 @@ export default class MainContent extends Component {
     if (this.props.store.getState().isLoggedIn === false) {
       this.context.router.history.push('/login');
     }
+    console.log(this.props.store.getState())
   }
 
   logOutAndRedirect = () => {
@@ -38,9 +40,9 @@ export default class MainContent extends Component {
           <header className="App-header">
             <nav>
               <h1 className="App-title">a moosic player</h1>
-              <a href="/search">Search</a>
-              <a href="/browse">Home</a>
-              <a href="/collection">Your Music</a>
+              <Link to="/search">Search</Link>
+              <Link to="/browse">Home</Link>
+              <Link to="/collection">Your Music</Link>
               <h2>Recently Played</h2>
               <ul>
                 <li>Unimagined</li>
