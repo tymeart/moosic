@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Player from './Player';
-import Playlist from './Playlist';
-import { logOut } from './actions/index';
+import { connect } from 'react-redux';
+import Player from '../components/Player';
+import Playlist from '../components/Playlist';
+import { logOut } from '../actions/index';
 import { Link } from 'react-router-dom';
 
-export default class MainContent extends Component {
+class MainContent extends Component {
   static contextTypes = {
     router: PropTypes.object
   }
 
   componentWillMount() {
-    if (this.props.store.getState().isLoggedIn === false) {
+    if (this.props.state.isLoggedIn === false) {
       this.context.router.history.push('/login');
     }
-    console.log(this.props.store.getState())
   }
 
   logOutAndRedirect = () => {
-    this.props.store.dispatch(logOut());
+    this.props.logOut();
     this.context.router.history.push('/login');
   }
 
@@ -26,7 +26,7 @@ export default class MainContent extends Component {
     fetch('https://api.spotify.com/v1/artists/2XziUthG3Ug3eiWuE5KRsp/',
       {
         headers: {
-          'Authorization': `Bearer ${this.props.store.getState().accessToken}`
+          'Authorization': `Bearer ${this.props.state.accessToken}`
         }
       })
     .then(res => res.json())
@@ -64,3 +64,19 @@ export default class MainContent extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    state: state
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    logOut: () => {
+      dispatch(logOut())
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainContent);
