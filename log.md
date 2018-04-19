@@ -1,4 +1,7 @@
-My thoughts and struggles while building this project.
+My thoughts, struggles, notes while building this project.
+
+### April 19th, 2018
+Moving from passing the Redux store to every component that needs access to it to using react-redux's `connect` was not bad. I had to review what to pass `mapStateToProps` and `mapDispatchToProps` and what they return, but the hardest part has already been done (setting up actions & reducers and connecting to the React components). It's been good practice getting familiar with react-redux.
 
 ### April 10th, 2018
 I'm just about done with basic auth. The user can now log in and out and will be redirected to the correct paths accordingly. Looking at the examples in the React Router docs makes me feel like the way I've structured this process is not the best, but it works right now.
