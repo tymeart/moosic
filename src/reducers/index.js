@@ -2,7 +2,8 @@ import * as types from '../actions/actionTypes';
 
 const initialState = {
   accessToken: '',
-  isLoggedIn: false
+  isLoggedIn: false,
+  categories: []
 };
 
 const userReducer = (state = initialState, action) => {
@@ -19,6 +20,11 @@ const userReducer = (state = initialState, action) => {
         accessToken: '',
         isLoggedIn: false
       };
+    case types.SAVE_CATEGORIES:
+      return {
+        ...state,
+        categories: action.payload
+      }
     default:
       return initialState;
   }

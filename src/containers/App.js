@@ -22,7 +22,7 @@ class App extends Component {
           <Route exact path="/" component={MainContent} />
           <Route path="/login" component={Login} />
           <Route path="/middle" component={Middle} />
-          <Route path="/browse" render={() => <Browse store={this.props.store} />} />
+          <Route path="/browse" component={Browse} />
         </Switch>
       </Router>
     );

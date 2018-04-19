@@ -11,4 +11,11 @@ export const logOut = () => {
   return {
     type: types.LOG_OUT
   };
-}
+};
+
+export const saveCategories = (categories) => {
+  return {
+    type: types.SAVE_CATEGORIES,
+    payload: categories
+  };
+};
