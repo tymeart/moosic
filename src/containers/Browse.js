@@ -14,6 +14,7 @@ class Browse extends Component {
       .then(res => res.json())
       .then(data => {
         let list = data.categories.items;
+        console.log(list)
         this.props.saveCategories(list);
       });
     }
@@ -21,9 +22,25 @@ class Browse extends Component {
 
   render() {
     return (
-        <ul>
-          {this.props.state.categories.map(item => <li key={item.name}>{item.name}</li>)}
+      <div className="Browse">
+        <h2>Genres & Moods</h2>
+        <ul className="tilelist">
+          {this.props.state.categories.map(item => {
+            return (
+              <li
+                className="tile"
+                key={item.name}
+              >
+                <img
+                  className="thumbnail"
+                  alt={`Thumbnail for ${item.name} category`}
+                  src={`${item.icons[0].url}`} />
+                {item.name}
+              </li>
+            );
+          })}
         </ul>
+      </div>
     );
   }
 }

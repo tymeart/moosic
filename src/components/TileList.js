@@ -4,7 +4,6 @@ const TileList = (props) => {
   const listItems = props.arr.map(item => {
     return (
       <li className="tile">
-        <div className="thumbnail"></div>
         <p>{item.title}</p>
         {item.artst && <p>{item.artist}</p>}
       </li>
