@@ -23,6 +23,14 @@ class Browse extends Component {
   render() {
     return (
       <div className="Browse">
+        <nav>
+          <ul>
+            <li>Featured</li>
+            <li>Genres & Moods</li>
+            <li>New Releases</li>
+            <li>Discover</li>
+          </ul>
+        </nav>
         <h2>Genres & Moods</h2>
         <ul className="tilelist">
           {this.props.state.categories.map(item => {
