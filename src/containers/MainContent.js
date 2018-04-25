@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Player from '../components/Player';
-import Playlist from '../components/Playlist';
+import Player from './Player';
+import Playlist from './Playlist';
 import { logOut } from '../actions/index';
 import { Link } from 'react-router-dom';
 
 class MainContent extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      tracklist: []
+    }
+  }
+
   static contextTypes = {
     router: PropTypes.object
   }
@@ -22,15 +30,15 @@ class MainContent extends Component {
     this.context.router.history.push('/login');
   }
 
-  getArtist = () => {
-    fetch('https://api.spotify.com/v1/artists/2XziUthG3Ug3eiWuE5KRsp/',
+  getAlbum = () => {
+    fetch('https://api.spotify.com/v1/albums/52fkHkIZ3QUHs90QuEGYDB',
       {
         headers: {
           'Authorization': `Bearer ${this.props.state.accessToken}`
         }
       })
     .then(res => res.json())
-    .then(data => console.log(data));
+    .then(data => this.setState({tracklist: data.tracks.items}));
   }
 
   render() {
@@ -54,9 +62,9 @@ class MainContent extends Component {
           <main>
             <button onClick={this.logOutAndRedirect}>Log Out</button>
             <Playlist
-              onSongClick={this.handleSongClick}
+              tracks={this.state.tracklist}
             />
-            <button onClick={this.getArtist}>Get Artist</button>
+            <button onClick={this.getAlbum}>Get Album</button>
           </main>
         </div>
         <Player />

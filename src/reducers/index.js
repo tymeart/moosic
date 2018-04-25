@@ -3,7 +3,8 @@ import * as types from '../actions/actionTypes';
 const initialState = {
   accessToken: '',
   isLoggedIn: false,
-  categories: []
+  categories: [],
+  currentlyPlaying: ''
 };
 
 const userReducer = (state = initialState, action) => {
@@ -24,7 +25,12 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         categories: action.payload
-      }
+      };
+    case types.PLAY_TRACK:
+      return {
+        ...state,
+        currentlyPlaying: action.payload
+      };
     default:
       return initialState;
   }

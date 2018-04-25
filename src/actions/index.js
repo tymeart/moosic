@@ -19,3 +19,10 @@ export const saveCategories = (categories) => {
     payload: categories
   };
 };
+
+export const playTrack = (songSrc) => {
+  return {
+    type: types.PLAY_TRACK,
+    payload: songSrc
+  };
+}
