@@ -9,7 +9,7 @@ class Playlist extends Component {
         <li
           key={track.name}
           onClick={() => this.props.playTrack(track.preview_url)}
-          >
+        >
             {track.name}
           </li>
         );

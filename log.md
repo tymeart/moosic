@@ -1,5 +1,8 @@
 My thoughts, struggles, notes while building this project.
 
+### April 26th, 2018
+Paused and realized the most important feature of this app is playing music, so I switched gears to focus on that. Set up my audio player buttons (play, pause, previous, next) and got the main button to toggle between the play icon and pause icon on click! Then I created a function using a `ref` to actually play the audio. I'm not sure how using refs looked like before, but with React 16.3, it seems pretty straightforward. Combined the icon toggling and audio playing into one onClick function. I need to rename things for clarity though. And maybe move to/remove things from my Redux store?
+
 ### April 19th, 2018
 Moving from passing the Redux store to every component that needs access to it to using react-redux's `connect` was not bad. I had to review what to pass `mapStateToProps` and `mapDispatchToProps` and what they return, but the hardest part has already been done (setting up actions & reducers and connecting to the React components). It's been good practice getting familiar with react-redux.
 

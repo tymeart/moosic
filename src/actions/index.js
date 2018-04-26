@@ -26,3 +26,9 @@ export const playTrack = (songSrc) => {
     payload: songSrc
   };
 }
+
+export const togglePlay = () => {
+  return {
+    type: types.TOGGLE_PLAY
+  };
+}

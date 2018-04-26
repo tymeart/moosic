@@ -4,7 +4,8 @@ const initialState = {
   accessToken: '',
   isLoggedIn: false,
   categories: [],
-  currentlyPlaying: ''
+  currentlyPlayingSrc: '',
+  isPlaying: false
 };
 
 const userReducer = (state = initialState, action) => {
@@ -29,7 +30,12 @@ const userReducer = (state = initialState, action) => {
     case types.PLAY_TRACK:
       return {
         ...state,
-        currentlyPlaying: action.payload
+        currentlyPlayingSrc: action.payload
+      };
+    case types.TOGGLE_PLAY:
+      return {
+        ...state,
+        isPlaying: !state.isPlaying
       };
     default:
       return initialState;
