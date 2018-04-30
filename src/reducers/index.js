@@ -27,12 +27,12 @@ const userReducer = (state = initialState, action) => {
         ...state,
         categories: action.payload
       };
-    case types.PLAY_TRACK:
+    case types.SAVE_SONG_SOURCE:
       return {
         ...state,
         currentlyPlayingSrc: action.payload
       };
-    case types.TOGGLE_PLAY:
+    case types.TOGGLE_PLAY_STATUS:
       return {
         ...state,
         isPlaying: !state.isPlaying

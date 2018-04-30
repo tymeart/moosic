@@ -20,15 +20,15 @@ export const saveCategories = (categories) => {
   };
 };
 
-export const playTrack = (songSrc) => {
+export const saveSongSrc = (songSrc) => {
   return {
-    type: types.PLAY_TRACK,
+    type: types.SAVE_SONG_SOURCE,
     payload: songSrc
   };
 }
 
-export const togglePlay = () => {
+export const togglePlayStatus = () => {
   return {
-    type: types.TOGGLE_PLAY
+    type: types.TOGGLE_PLAY_STATUS
   };
 }
