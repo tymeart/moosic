@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Controls from './Controls';
-import { saveSongSrc } from '../actions/index';
+import { saveSongSrc, togglePlayStatus } from '../actions/index';
 
 class Player extends Component {
   constructor(props) {
@@ -10,26 +10,43 @@ class Player extends Component {
     this.audioEl = React.createRef();
   }
 
-  playAudio = () => {
-    this.audioEl.current.play();
+  togglePlayPause = () => {
+    this.audioEl.current.load();
+    this.fetchAudioAndPlay();
   }
 
-  pauseAudio = () => {
-    this.audioEl.current.pause();
+  fetchAudioAndPlay() {
+    fetch(this.props.state.currentlyPlayingSrc)
+    .then(res => {
+      this.audioEl.current.src = res.url;
+      return this.audioEl.current.play();
+      })
+    .then(_ => {
+      // Audio playback started
+      if (this.props.state.isPlaying) {
+        this.audioEl.current.pause();
+        this.props.togglePlayStatus();
+      } else {
+        this.audioEl.current.play();
+        this.props.togglePlayStatus();
+      }
+      })
+    .catch(e => {
+      console.log(e);
+    })
   }
 
   render() {
     return (
       <div className="player center">
         <Controls
-          play={this.playAudio}
-          pause={this.pauseAudio}
+          togglePlayPause={this.togglePlayPause}
         />
-        <audio id="audio" ref={this.audioEl}>
-          <source
-            src="https://p.scdn.co/mp3-preview/8cb264dcdf48b19123960729f5c0e07d6ba5d57b?cid=2d9beb2f5b9447cbb788d9ac8324eb8f"
-            type="audio/mp3"
-          />
+        <audio
+          id="audio"
+          ref={this.audioEl}
+          src={this.props.state.currentlyPlayingSrc}
+        >
           Your browser does not support the <code>audio</code> element.
         </audio>
       </div>
@@ -47,6 +64,9 @@ const mapDispatchToProps = dispatch => {
   return {
     saveSongSrc: (songSrc) => {
       dispatch(saveSongSrc(songSrc))
+    },
+    togglePlayStatus: () => {
+      dispatch(togglePlayStatus())
     }
   };
 };
