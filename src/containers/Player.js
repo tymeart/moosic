@@ -11,29 +11,19 @@ class Player extends Component {
   }
 
   togglePlayPause = () => {
-    this.audioEl.current.load();
-    this.fetchAudioAndPlay();
-  }
-
-  fetchAudioAndPlay() {
-    fetch(this.props.state.currentlyPlayingSrc)
-    .then(res => {
-      this.audioEl.current.src = res.url;
-      return this.audioEl.current.play();
-      })
-    .then(_ => {
-      // Audio playback started
-      if (this.props.state.isPlaying) {
-        this.audioEl.current.pause();
-        this.props.togglePlayStatus();
-      } else {
-        this.audioEl.current.play();
-        this.props.togglePlayStatus();
-      }
-      })
-    .catch(e => {
-      console.log(e);
-    })
+    let playPromise = this.audioEl.current.play();
+    if (playPromise !== undefined) {
+      playPromise.then(_ => {
+        if (this.props.state.isPlaying) {
+          this.audioEl.current.pause();
+          this.props.togglePlayStatus();
+        } else {
+          this.audioEl.current.play();
+          this.props.togglePlayStatus();
+        }
+        })
+      .catch(e => console.log(e));
+    }
   }
 
   render() {
