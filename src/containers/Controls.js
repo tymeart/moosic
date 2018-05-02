@@ -11,12 +11,21 @@ import {
 class Controls extends Component {
   render() {
     return (
-      <div>
-        <button><FaStepBackward title="Previous" /></button>
-        <button onClick={this.props.togglePlayPause}>
-          {this.props.state.isPlaying ? <FaPauseCircleO title="Pause" /> : <FaPlayCircleO title="Play" />}
-        </button>
-        <button><FaStepForward title="Next" /></button>
+      <div className="Controls">
+        <div className="Controls-buttons">
+          <button><FaStepBackward title="Previous" /></button>
+          <button className="play-pause" onClick={this.props.togglePlayPause}>
+            {this.props.state.isPlaying ? <FaPauseCircleO title="Pause" /> : <FaPlayCircleO title="Play" />}
+          </button>
+          <button><FaStepForward title="Next" /></button>
+        </div>
+        <div className="Controls-progress">
+          <p className="progress-time">0:19</p>
+          <div className="progress-bar">
+            <div className="progress-bar-completed"></div>
+          </div>
+          <p className="progress-time-total">2:46</p>
+        </div>
       </div>
     );
   }
