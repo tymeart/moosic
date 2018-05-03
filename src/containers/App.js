@@ -11,10 +11,6 @@ import {
 } from "react-router-dom";
 
 class App extends Component {
-  handleSongClick = (e) => {
-    console.log(e.target.innerHTML);
-  }
-
   render() {
     return (
       <Router>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Controls from './Controls';
-import { saveSongSrc, togglePlayStatus } from '../actions/index';
+import { togglePlayStatus } from '../actions/index';
 
 class Player extends Component {
   constructor(props) {
@@ -52,9 +52,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    saveSongSrc: (songSrc) => {
-      dispatch(saveSongSrc(songSrc))
-    },
     togglePlayStatus: () => {
       dispatch(togglePlayStatus())
     }
