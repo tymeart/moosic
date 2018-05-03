@@ -8,6 +8,17 @@ class Player extends Component {
     super(props);
 
     this.audioEl = React.createRef();
+
+    this.state = {
+      duration: '0:00',
+      currentTime: '0:00'
+    }
+  }
+
+  componentDidMount() {
+    this.audioEl.current.addEventListener('timeupdate', () => {
+      this.formatTime(this.audioEl.current.currentTime);
+    });
   }
 
   togglePlayPause = () => {
@@ -26,14 +37,23 @@ class Player extends Component {
     }
   }
 
+  formatTime(sec) {
+    let minutes = `${Math.trunc(sec / 60)}`;
+    let seconds = sec < 10 ?
+      `0${Math.trunc(sec % 60)}` :
+      `${Math.trunc(sec % 60)}`;
+    this.setState({currentTime: `${minutes}:${seconds}`});
+  }
+
   render() {
     return (
       <div className="player center">
         <Controls
           togglePlayPause={this.togglePlayPause}
+          duration={this.state.duration}
+          currentTime={this.state.currentTime}
         />
         <audio
-          id="audio"
           ref={this.audioEl}
           src={this.props.state.currentlyPlayingSrc}
         >
