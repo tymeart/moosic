@@ -19,12 +19,19 @@ class Controls extends Component {
           </button>
           <button><FaStepForward title="Next" /></button>
         </div>
+
         <div className="Controls-progress">
-          <p className="progress-time">0:19</p>
+          <p className="progress-time">{this.props.currentTimeDisplay}</p>
           <div className="progress-bar">
-            <div className="progress-bar-completed"></div>
+            <div
+              className="progress-bar-completed"
+              style={{
+                width: this.props.progressBarWidth
+              }}
+              >
+            </div>
           </div>
-          <p className="progress-time-total">2:46</p>
+          <p className="progress-time-total">{this.props.durationDisplay}</p>
         </div>
       </div>
     );

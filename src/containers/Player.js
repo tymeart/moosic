@@ -10,14 +10,22 @@ class Player extends Component {
     this.audioEl = React.createRef();
 
     this.state = {
-      duration: '0:00',
-      currentTime: '0:00'
+      durationDisplay: '0:00',
+      currentTimeDisplay: '0:00',
+      progressBarWidth: '0px'
     }
   }
 
   componentDidMount() {
     this.audioEl.current.addEventListener('timeupdate', () => {
-      this.formatTime(this.audioEl.current.currentTime);
+      let currentTimeToDisplay = this.formatTime(this.audioEl.current.currentTime);
+      let progressRatio = this.audioEl.current.currentTime / this.audioEl.current.duration;
+      this.setState(
+        {
+          currentTimeDisplay: currentTimeToDisplay,
+          progressBarWidth: `${progressRatio * 400}px`
+        }
+      );
     });
   }
 
@@ -42,7 +50,7 @@ class Player extends Component {
     let seconds = sec < 10 ?
       `0${Math.trunc(sec % 60)}` :
       `${Math.trunc(sec % 60)}`;
-    this.setState({currentTime: `${minutes}:${seconds}`});
+    return `${minutes}:${seconds}`;
   }
 
   render() {
@@ -50,8 +58,9 @@ class Player extends Component {
       <div className="player center">
         <Controls
           togglePlayPause={this.togglePlayPause}
-          duration={this.state.duration}
-          currentTime={this.state.currentTime}
+          durationDisplay={this.state.durationDisplay}
+          currentTimeDisplay={this.state.currentTimeDisplay}
+          progressBarWidth={this.state.progressBarWidth}
         />
         <audio
           ref={this.audioEl}
