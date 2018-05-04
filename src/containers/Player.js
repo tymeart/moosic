@@ -33,6 +33,9 @@ class Player extends Component {
     let playPromise = this.audioEl.current.play();
     if (playPromise !== undefined) {
       playPromise.then(_ => {
+        if (!isNaN(this.audioEl.current.duration)) {
+          this.setState({durationDisplay: this.formatTime(this.audioEl.current.duration)});
+        }
         if (this.props.state.isPlaying) {
           this.audioEl.current.pause();
           this.props.togglePlayStatus();
