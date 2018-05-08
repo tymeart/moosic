@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import Login from '../components/Login';
+import Navbar from '../components/Navbar';
 import MainContent from './MainContent';
 import Middle from './Middle';
 import Browse from './Browse';
@@ -61,18 +62,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <div className="App-top">
-            <nav>
-              <h1 className="App-title">a moosic player</h1>
-              <NavLink to="/search">Search</NavLink>
-              <NavLink to="/browse">Home</NavLink>
-              <NavLink to="/collection">Your Music</NavLink>
-              <h2>Recently Played</h2>
-              <ul>
-                <li>Unimagined</li>
-                <li>Ground Dweller</li>
-                <li>Before I Cave In</li>
-              </ul>
-            </nav>
+            {this.props.state.isLoggedIn && <Navbar />}
 
             {routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
           </div>

@@ -9,12 +9,12 @@
 
 .App-top {
   display: flex;
+  height: calc(100vh - 100px);
 }
 
 .App-main {
   background-color: lightblue;
-  display: flex;
-  height: calc(100vh - 100px);
+  flex-grow: 1;
 }
 
 .App-title {
@@ -34,7 +34,6 @@ nav ul {
 }
 
 main {
-  flex: 1;
   overflow-y: auto;
 }
 
