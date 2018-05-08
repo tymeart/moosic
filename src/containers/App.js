@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import '../App.css';
 import Login from '../components/Login';
 import Navbar from '../components/Navbar';
@@ -66,11 +67,17 @@ class App extends Component {
 
             {routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
           </div>
-          <Player />
+          {this.props.state.isLoggedIn && <Player />}
         </div>
       </Router>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    state: state
+  };
+};
+
+export default connect(mapStateToProps)(App);
