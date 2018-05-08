@@ -28,7 +28,7 @@ class Controls extends Component {
               style={{
                 width: this.props.progressBarWidth
               }}
-              >
+            >
             </div>
           </div>
           <p className="progress-time-total">{this.props.durationDisplay}</p>
