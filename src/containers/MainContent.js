@@ -17,12 +17,6 @@ class MainContent extends Component {
     router: PropTypes.object
   }
 
-  componentWillMount() {
-    if (this.props.state.isLoggedIn === false) {
-      this.context.router.history.push('/login');
-    }
-  }
-
   logOutAndRedirect = () => {
     this.props.logOut();
     this.context.router.history.push('/login');
