@@ -9,32 +9,68 @@
 
 .App-top {
   display: flex;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 90px);
 }
 
 .App-main {
-  background-color: lightblue;
   flex-grow: 1;
+  overflow-y: auto;
+}
+
+.App-main h2 {
+  text-align: center;
 }
 
 .App-title {
   text-align: center;
 }
 
-nav {
-  background-color: tomato;
+.Navbar {
+  background-color:rgba(0, 0, 0, 0.8);
+  color: #B0AFAF;
   display: flex;
   flex-direction: column;
-  width: 200px;
+  padding: 15px 25px;
+  width: 220px;
+}
+
+.Navbar a {
+  color: #B0AFAF;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-decoration: none;
+}
+
+.Navbar a:hover {
+  color: #FFF;
+  cursor: pointer;
+}
+
+.Navbar .selected {
+  color: #2EB925;
+}
+
+.Navbar h2 {
+  font-size: 0.8em;
+  font-weight: normal;
+  letter-spacing: 1px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.Navbar li {
+  margin-bottom: 15px;
+}
+
+.Navbar .album-type {
+  font-size: 0.8em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 nav ul {
   list-style-type: none;
   padding: 0;
-}
-
-main {
-  overflow-y: auto;
 }
 
 .center {
@@ -44,14 +80,26 @@ main {
 }
 
 .player {
-  background-color: #353535;
-  height: 100px;
+  background-color: #2A2A2A;
+  height: 90px;
   justify-content: center;
 }
 
 .Browse {
+  color: #FFF;
   width: 80%;
   margin: 0 auto;
+}
+
+.category-nav ul {
+  display: flex;
+  justify-content: center;
+}
+
+.category-nav li {
+  padding: 10px;
+  margin: 5px;
+  text-transform: uppercase;
 }
 
 .tilelist {
@@ -109,7 +157,7 @@ main {
 }
 
 .progress-bar {
-  background-color: #4F4F4F;
+  background-color: #4B4B4B;
   border-radius: 8px;
   height: 4px;
   margin: 8px;

@@ -22,8 +22,8 @@ class Browse extends Component {
 
   render() {
     return (
-      <div className="Browse">
-        <nav>
+      <div className="Browse App-main">
+        <nav className="category-nav">
           <ul>
             <li>Featured</li>
             <li>Genres & Moods</li>
@@ -42,7 +42,8 @@ class Browse extends Component {
                 <img
                   className="thumbnail"
                   alt={`Thumbnail for ${item.name} category`}
-                  src={`${item.icons[0].url}`} />
+                  src={`${item.icons[0].url}`}
+                />
                 {item.name}
               </li>
             );
