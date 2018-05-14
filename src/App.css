@@ -25,6 +25,12 @@
   text-align: center;
 }
 
+.Login {
+  background-color: #FFF;
+  height: 100vh;
+  width: 100vw;
+}
+
 .Navbar {
   background-color:rgba(0, 0, 0, 0.8);
   color: #B0AFAF;
