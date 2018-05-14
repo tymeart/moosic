@@ -1,6 +1,11 @@
+html {
+  font-size: 62.5%;
+}
+
 body {
   background: linear-gradient(180deg, #3D5067, #000);
+  font-family: 'Work Sans', sans-serif;
+  font-size: 1.4rem;
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { saveCategories } from '../actions/index';
 
 class Browse extends Component {
@@ -25,15 +26,16 @@ class Browse extends Component {
       <div className="Browse App-main">
         <nav className="category-nav">
           <ul>
-            <li>Featured</li>
-            <li>Genres & Moods</li>
-            <li>New Releases</li>
-            <li>Discover</li>
+            <li><NavLink to="/browse/featured">Featured</NavLink></li>
+            <li><NavLink to="/browse/podcasts">Podcasts</NavLink></li>
+            <li><NavLink to="/browse/genres">Genres & Moods</NavLink></li>
+            <li><NavLink to="/browse/newreleases">New Releases</NavLink></li>
+            <li><NavLink to="/browse/discover">Discover</NavLink></li>
           </ul>
         </nav>
         <h2>Genres & Moods</h2>
         <ul className="tilelist">
-          {this.props.state.categories.map(item => {
+          {this.props.state.categories.slice(1).map(item => {
             return (
               <li
                 className="tile"
