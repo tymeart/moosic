@@ -20,10 +20,13 @@ export const saveCategories = (categories) => {
   };
 };
 
-export const saveSongSrc = (songSrc) => {
+export const saveSongInfo = (track, album) => {
   return {
-    type: types.SAVE_SONG_SOURCE,
-    payload: songSrc
+    type: types.SAVE_SONG_INFO,
+    payload: {
+      track: track,
+      album: album
+    }
   };
 }
 

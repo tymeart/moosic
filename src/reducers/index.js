@@ -5,6 +5,7 @@ const initialState = {
   isLoggedIn: false,
   categories: [],
   currentlyPlayingSrc: '',
+  currentlyPlayingAlbum: {},
   isPlaying: false
 };
 
@@ -27,10 +28,11 @@ const userReducer = (state = initialState, action) => {
         ...state,
         categories: action.payload
       };
-    case types.SAVE_SONG_SOURCE:
+    case types.SAVE_SONG_INFO:
       return {
         ...state,
-        currentlyPlayingSrc: action.payload
+        currentlyPlayingSrc: action.payload.track.preview_url,
+        currentlyPlayingAlbum: action.payload.album
       };
     case types.TOGGLE_PLAY_STATUS:
       return {

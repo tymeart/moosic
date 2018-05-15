@@ -9,6 +9,12 @@ class MainContent extends Component {
     super(props);
 
     this.state = {
+      album: {
+        id: '',
+        name: '',
+        images: [],
+        type: ''
+      },
       tracklist: []
     }
   }
@@ -32,7 +38,16 @@ class MainContent extends Component {
     .then(res => res.json())
     .then(data => {
       console.log(data)
-      this.setState({tracklist: data.tracks.items})});
+      this.setState({
+        album: {
+          id: data.id,
+          name: data.name,
+          images: data.images,
+          type: data.album_type
+        },
+        tracklist: data.tracks.items
+      });
+    });
   }
 
   render() {
@@ -41,6 +56,7 @@ class MainContent extends Component {
         <main>
           <button onClick={this.logOutAndRedirect}>Log Out</button>
           <Playlist
+            album={this.state.album}
             tracks={this.state.tracklist}
           />
           <button onClick={this.getAlbum}>Get Album</button>

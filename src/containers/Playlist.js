@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { saveSongSrc } from '../actions/index';
+import { saveSongInfo } from '../actions/index';
 
 class Playlist extends Component {
   render() {
@@ -8,10 +8,10 @@ class Playlist extends Component {
       return (
         <li
           key={track.name}
-          onClick={() => this.props.saveSongSrc(track.preview_url)}
+          onClick={() => this.props.saveSongInfo(track, this.props.album)}
         >
-            {track.name}
-          </li>
+          {track.name}
+        </li>
         );
       });
 
@@ -33,8 +33,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    saveSongSrc: (songSrc) => {
-      dispatch(saveSongSrc(songSrc))
+    saveSongInfo: (track, album) => {
+      dispatch(saveSongInfo(track, album))
     }
   };
 };
