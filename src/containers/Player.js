@@ -57,8 +57,32 @@ class Player extends Component {
   }
 
   render() {
+    let artistsList = '';
+    if (this.props.state.currentlyPlayingTrack) {
+      artistsList = `${this.props.state.currentlyPlayingTrack.artists[0].name}`;
+      if (this.props.state.currentlyPlayingTrack.artists.length > 1) {
+        for (let i = 1; i < this.props.state.currentlyPlayingTrack.artists.length; i++) {
+          artistsList += `, ${this.props.state.currentlyPlayingTrack.artists[i].name}`
+        }
+      }
+    }
+
     return (
-      <div className="player center">
+      <div className="player">
+        <div className="currently-playing-container">
+          {this.props.state.currentlyPlayingAlbum &&
+            <span>
+              <img
+                src={this.props.state.currentlyPlayingAlbum.images[2].url}
+                alt={`Cover art for ${this.props.state.currentlyPlayingAlbum.name}`}
+              />
+              <div className="currently-playing-info">
+                <p className="currently-playing-title">{this.props.state.currentlyPlayingTrack.name}</p>
+                <p className="currently-playing-artist">{artistsList}</p>
+              </div>
+            </span>
+          }
+        </div>
         <Controls
           togglePlayPause={this.togglePlayPause}
           durationDisplay={this.state.durationDisplay}

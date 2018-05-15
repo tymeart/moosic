@@ -10,10 +10,12 @@ class MainContent extends Component {
 
     this.state = {
       album: {
+        artists: [],
         id: '',
         name: '',
         images: [],
-        type: ''
+        type: '',
+        releaseDate: ''
       },
       tracklist: []
     }
@@ -37,13 +39,14 @@ class MainContent extends Component {
       })
     .then(res => res.json())
     .then(data => {
-      console.log(data)
       this.setState({
         album: {
+          artists: data.artists,
           id: data.id,
           name: data.name,
           images: data.images,
-          type: data.album_type
+          type: data.album_type,
+          releaseDate: data.release_date
         },
         tracklist: data.tracks.items
       });
