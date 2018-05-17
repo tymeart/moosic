@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { CLIENT_ID, REDIRECT_URI } from '../hidden';
+import '../styles/Login.css';
 
 class Login extends Component {
   render() {

@@ -1,0 +1,54 @@
+.App-title {
+  color: #FFF;
+}
+
+.Navbar {
+  background-color:rgba(0, 0, 0, 0.8);
+  color: #B0AFAF;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 25px;
+  width: 220px;
+}
+
+.Navbar svg {
+  height: 25px;
+  margin-right: 12px;
+  width: 25px;
+}
+
+.Navbar a {
+  color: #B0AFAF;
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-decoration: none;
+}
+
+.Navbar a:hover {
+  color: #FFF;
+  cursor: pointer;
+}
+
+.Navbar .selected,
+.Navbar .selected:hover {
+  color: #2EB925;
+}
+
+.Navbar h2 {
+  font-size: 1.2rem;
+  font-weight: normal;
+  letter-spacing: 0.1rem;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.Navbar li {
+  margin-bottom: 15px;
+}
+
+.Navbar .album-type {
+  font-size: 0.8em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}

@@ -1,0 +1,8 @@
+.App-main {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.App-main h2 {
+  text-align: center;
+}

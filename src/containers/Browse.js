@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { saveCategories } from '../actions/index';
+import '../styles/Browse.css';
 
 class Browse extends Component {
   componentDidMount() {

@@ -7,6 +7,7 @@ import {
   FaStepBackward,
   FaStepForward
 } from 'react-icons/lib/fa';
+import '../styles/Controls.css';
 
 class Controls extends Component {
   render() {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import '../App.css';
+import '../styles/App.css';
 import Login from '../components/Login';
 import Navbar from '../components/Navbar';
 import MainContent from './MainContent';

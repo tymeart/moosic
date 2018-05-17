@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Playlist from './Playlist';
 import { logOut } from '../actions/index';
+import '../styles/MainContent.css';
 
 class MainContent extends Component {
   constructor(props) {
