@@ -33,10 +33,16 @@
 
 .category-nav a {
   color: #B0AFAF;
+  padding-bottom: 5px;
   text-decoration: none;
 }
 
 .category-nav a:hover {
+  color: #FFF;
+}
+
+.category-nav a.selectedCategory {
+  border-bottom: 2px solid #2EB925;
   color: #FFF;
 }
 
