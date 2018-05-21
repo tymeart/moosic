@@ -2,9 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const BrowseResults = ({ match }) => {
+  const categoryMap = {
+    featured: 'Featured',
+    podcasts: 'Top podcasts',
+    genres: 'Genres & Moods',
+    newreleases: 'The best new releases',
+    discover: 'Playlists Made Just For You'
+  }
+
   return (
     <div>
-      <h2>{match.params.category}</h2>
+      <h2>{categoryMap[match.params.category]}</h2>
       {/* <ul className="tilelist">
         {this.props.categories.slice(1).map(item => {
           return (
