@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Controls from './Controls';
-import { togglePlayStatus } from '../actions/index';
+import { togglePlayStatus, updateSongProgress, updateSongDuration } from '../actions/index';
 import '../styles/Player.css';
 
 class Player extends Component {
@@ -9,24 +9,13 @@ class Player extends Component {
     super(props);
 
     this.audioEl = React.createRef();
-
-    this.state = {
-      durationDisplay: '0:00',
-      currentTimeDisplay: '0:00',
-      progressBarWidth: '0px'
-    }
   }
 
   componentDidMount() {
     this.audioEl.current.addEventListener('timeupdate', () => {
       let currentTimeToDisplay = this.formatTime(this.audioEl.current.currentTime);
       let progressRatio = this.audioEl.current.currentTime / this.audioEl.current.duration;
-      this.setState(
-        {
-          currentTimeDisplay: currentTimeToDisplay,
-          progressBarWidth: `${progressRatio * 400}px`
-        }
-      );
+      this.props.updateSongProgress(currentTimeToDisplay, `${progressRatio * 400}px`);
     });
   }
 
@@ -35,7 +24,7 @@ class Player extends Component {
     if (playPromise !== undefined) {
       playPromise.then(_ => {
         if (!isNaN(this.audioEl.current.duration)) {
-          this.setState({durationDisplay: this.formatTime(this.audioEl.current.duration)});
+          this.props.updateSongDuration(this.formatTime(this.audioEl.current.duration));
         }
         if (this.props.state.isPlaying) {
           this.audioEl.current.pause();
@@ -86,9 +75,6 @@ class Player extends Component {
         </div>
         <Controls
           togglePlayPause={this.togglePlayPause}
-          durationDisplay={this.state.durationDisplay}
-          currentTimeDisplay={this.state.currentTimeDisplay}
-          progressBarWidth={this.state.progressBarWidth}
         />
         <audio
           ref={this.audioEl}
@@ -111,6 +97,12 @@ const mapDispatchToProps = dispatch => {
   return {
     togglePlayStatus: () => {
       dispatch(togglePlayStatus())
+    },
+    updateSongProgress: (currentTimeDisplay, progressBarWidth) => {
+      dispatch(updateSongProgress(currentTimeDisplay, progressBarWidth))
+    },
+    updateSongDuration: (durationDisplay) => {
+      dispatch(updateSongDuration(durationDisplay))
     }
   };
 };

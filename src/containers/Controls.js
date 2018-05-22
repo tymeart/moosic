@@ -22,17 +22,17 @@ class Controls extends Component {
         </div>
 
         <div className="Controls-progress">
-          <p className="progress-time">{this.props.currentTimeDisplay}</p>
+          <p className="progress-time">{this.props.state.playerCurrentTimeDisplay}</p>
           <div className="progress-bar">
             <div
               className="progress-bar-completed"
               style={{
-                width: this.props.progressBarWidth
+                width: this.props.state.playerProgressBarWidth
               }}
             >
             </div>
           </div>
-          <p className="progress-time-total">{this.props.durationDisplay}</p>
+          <p className="progress-time-total">{this.props.state.playerDurationDisplay}</p>
         </div>
       </div>
     );

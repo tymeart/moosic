@@ -35,3 +35,22 @@ export const togglePlayStatus = () => {
     type: types.TOGGLE_PLAY_STATUS
   };
 }
+
+export const updateSongProgress = (currentTimeDisplay, progressBarWidth) => {
+  return {
+    type: types.UPDATE_SONG_PROGRESS,
+    payload: {
+      currentTimeDisplay: currentTimeDisplay,
+      progressBarWidth: progressBarWidth
+    }
+  };
+}
+
+export const updateSongDuration = (durationDisplay) => {
+  return {
+    type: types.UPDATE_SONG_DURATION,
+    payload: {
+      durationDisplay: durationDisplay
+    }
+  };
+}

@@ -7,6 +7,9 @@ const initialState = {
   currentlyPlayingSrc: '',
   currentlyPlayingTrack: null,
   currentlyPlayingAlbum: null,
+  playerDurationDisplay: '0:00',
+  playerCurrentTimeDisplay: '0:00',
+  playerProgressBarWidth: '0px',
   isPlaying: false
 };
 
@@ -34,13 +37,25 @@ const userReducer = (state = initialState, action) => {
         ...state,
         currentlyPlayingSrc: action.payload.track.preview_url,
         currentlyPlayingTrack: action.payload.track,
-        currentlyPlayingAlbum: action.payload.album
+        currentlyPlayingAlbum: action.payload.album,
+        playerProgressBarWidth: '0px'
       };
     case types.TOGGLE_PLAY_STATUS:
       return {
         ...state,
         isPlaying: !state.isPlaying
       };
+    case types.UPDATE_SONG_PROGRESS:
+      return {
+        ...state,
+        playerCurrentTimeDisplay: action.payload.currentTimeDisplay,
+        playerProgressBarWidth: action.payload.progressBarWidth
+      };
+    case types.UPDATE_SONG_DURATION:
+      return {
+        ...state,
+        playerDurationDisplay: action.payload.durationDisplay
+      }
     default:
       return initialState;
   }
