@@ -69,8 +69,8 @@ class Player extends Component {
                 alt={`Cover art for ${currentlyPlayingAlbum.name}`}
               />
               <div className="currently-playing-info">
-                <p className="currently-playing-title">{currentlyPlayingTrack.name}</p>
-                <p className="currently-playing-artist">{artistsList}</p>
+                <p className="currently-playing-title truncate">{currentlyPlayingTrack.name}</p>
+                <p className="currently-playing-artist truncate">{artistsList}</p>
               </div>
             </span>
           }
