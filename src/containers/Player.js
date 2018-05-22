@@ -48,11 +48,13 @@ class Player extends Component {
 
   render() {
     let artistsList = '';
-    if (this.props.state.currentlyPlayingTrack) {
-      artistsList = `${this.props.state.currentlyPlayingTrack.artists[0].name}`;
-      if (this.props.state.currentlyPlayingTrack.artists.length > 1) {
-        for (let i = 1; i < this.props.state.currentlyPlayingTrack.artists.length; i++) {
-          artistsList += `, ${this.props.state.currentlyPlayingTrack.artists[i].name}`
+    const { currentlyPlayingTrack, currentlyPlayingAlbum } = this.props.state;
+
+    if (currentlyPlayingTrack) {
+      artistsList = `${currentlyPlayingTrack.artists[0].name}`;
+      if (currentlyPlayingTrack.artists.length > 1) {
+        for (let i = 1; i < currentlyPlayingTrack.artists.length; i++) {
+          artistsList += `, ${currentlyPlayingTrack.artists[i].name}`
         }
       }
     }
@@ -60,14 +62,14 @@ class Player extends Component {
     return (
       <div className="player">
         <div className="currently-playing-container">
-          {this.props.state.currentlyPlayingAlbum &&
+          {currentlyPlayingAlbum &&
             <span>
               <img
-                src={this.props.state.currentlyPlayingAlbum.images[2].url}
-                alt={`Cover art for ${this.props.state.currentlyPlayingAlbum.name}`}
+                src={currentlyPlayingAlbum.images[2].url}
+                alt={`Cover art for ${currentlyPlayingAlbum.name}`}
               />
               <div className="currently-playing-info">
-                <p className="currently-playing-title">{this.props.state.currentlyPlayingTrack.name}</p>
+                <p className="currently-playing-title">{currentlyPlayingTrack.name}</p>
                 <p className="currently-playing-artist">{artistsList}</p>
               </div>
             </span>
