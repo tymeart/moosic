@@ -40,6 +40,13 @@
   font-size: 1.1rem;
 }
 
+.currently-playing-title:hover,
+.currently-playing-artist:hover {
+  color: #FFF;
+  text-decoration: underline;
+  text-decoration-skip: ink;
+}
+
 .truncate {
   white-space: nowrap;
   overflow: hidden;
