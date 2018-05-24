@@ -13,10 +13,24 @@ export const logOut = () => {
   };
 };
 
-export const saveCategories = (categories) => {
+export const saveGenres = (genres) => {
   return {
-    type: types.SAVE_CATEGORIES,
-    payload: categories
+    type: types.SAVE_GENRES,
+    payload: genres
+  };
+};
+
+export const saveFeaturedPlaylists = (playlists) => {
+  return {
+    type: types.SAVE_FEATURED_PLAYLISTS,
+    payload: playlists
+  };
+};
+
+export const saveNewReleases = (newreleases) => {
+  return {
+    type: types.SAVE_NEW_RELEASES,
+    payload: newreleases
   };
 };
 

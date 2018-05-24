@@ -3,7 +3,9 @@ import * as types from '../actions/actionTypes';
 const initialState = {
   accessToken: '',
   isLoggedIn: false,
-  categories: [],
+  genres: [],
+  featuredPlaylists: [],
+  newReleases: [],
   currentlyPlayingSrc: '',
   currentlyPlayingTrack: null,
   currentlyPlayingAlbum: null,
@@ -27,10 +29,20 @@ const userReducer = (state = initialState, action) => {
         accessToken: '',
         isLoggedIn: false
       };
-    case types.SAVE_CATEGORIES:
+    case types.SAVE_GENRES:
       return {
         ...state,
-        categories: action.payload
+        genres: action.payload
+      };
+    case types.SAVE_FEATURED_PLAYLISTS:
+      return {
+        ...state,
+        featuredPlaylists: action.payload
+      };
+    case types.SAVE_NEW_RELEASES:
+      return {
+        ...state,
+        newReleases: action.payload
       };
     case types.SAVE_SONG_INFO:
       return {
