@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect, Switch } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import BrowseGenres from '../components/BrowseGenres';
 import BrowseFeatured from '../components/BrowseFeatured';
@@ -61,24 +61,29 @@ class Browse extends Component {
           </ul>
         </nav>
 
-        <PrivateRoute
-          path="/browse/featured"
-          isLoggedIn={this.props.state.isLoggedIn}
-          playlists={this.props.state.featuredPlaylists}
-          component={BrowseFeatured}
-        />
-        <PrivateRoute
-          path="/browse/genres"
-          isLoggedIn={this.props.state.isLoggedIn}
-          categories={this.props.state.genres}
-          component={BrowseGenres}
-        />
-        <PrivateRoute
-          path="/browse/newreleases"
-          isLoggedIn={this.props.state.isLoggedIn}
-          newReleases={this.props.state.newReleases}
-          component={BrowseNewReleases}
-        />
+        {this.props.match.url === this.props.location.pathname && 
+          <Redirect to={'/browse/genres'} />}
+
+        <Switch>
+          <PrivateRoute
+            path="/browse/featured"
+            isLoggedIn={this.props.state.isLoggedIn}
+            playlists={this.props.state.featuredPlaylists}
+            component={BrowseFeatured}
+          />
+          <PrivateRoute
+            path="/browse/genres"
+            isLoggedIn={this.props.state.isLoggedIn}
+            categories={this.props.state.genres}
+            component={BrowseGenres}
+          />
+          <PrivateRoute
+            path="/browse/newreleases"
+            isLoggedIn={this.props.state.isLoggedIn}
+            newReleases={this.props.state.newReleases}
+            component={BrowseNewReleases}
+          />
+        </Switch>
       </div>
     );
   }
