@@ -70,6 +70,25 @@
 }
 
 .tile .thumbnail {
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
   height: 150px;
   margin-bottom: 15px;
+}
+
+.playlistName,
+.albumName {
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.artistName {
+  color: #B0AFAF;
+  line-height: 1.5;
+}
+
+.artistName:hover {
+  color: #FFF;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-skip: ink;
 }
