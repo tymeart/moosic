@@ -1,10 +1,11 @@
 import React from 'react';
 
 const BrowseGenres = ({ categories }) => {
+    console.log(categories)
     return (
         <div>
             <h2>Genres & Moods</h2>
-            {/* <ul className="tilelist">
+            <ul className="tilelist">
                 {categories.slice(1).map(item => {
                     return (
                         <li
@@ -20,7 +21,7 @@ const BrowseGenres = ({ categories }) => {
                         </li>
                     );
                 })}
-            </ul> */}
+            </ul>
         </div>
     );
 }
