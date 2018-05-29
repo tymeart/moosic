@@ -8,6 +8,7 @@ import Middle from './Middle';
 import Browse from './Browse';
 import Player from './Player';
 import Search from './Search';
+import NoMatch from '../components/NoMatch';
 import PrivateRoute from './PrivateRoute';
 import {
   BrowserRouter as Router,
@@ -28,6 +29,7 @@ class App extends Component {
               <Route path="/middle" component={Middle} />
               <PrivateRoute path="/browse" isLoggedIn={this.props.isLoggedIn} component={Browse} />
               <PrivateRoute path="/search" isLoggedIn={this.props.isLoggedIn} component={Search} />
+              <Route component={NoMatch} />
             </Switch>
           </div>
           {this.props.isLoggedIn && <Player />}
