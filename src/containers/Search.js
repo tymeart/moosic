@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import SearchResults from '../components/SearchResults';
 import '../styles/Search.css';
 
 class Search extends Component {
@@ -7,7 +8,8 @@ class Search extends Component {
     super(props);
 
     this.state = {
-      input: ''
+      input: '',
+      results: null
     }
   }
 
@@ -36,7 +38,7 @@ class Search extends Component {
       })
       .then(res => res.json())
       .then(data => {
-        console.log(data)
+        this.setState({results: data})
       });
   }
 
@@ -47,8 +49,11 @@ class Search extends Component {
           <label htmlFor="search">Search for an Artist, Song, Album, or Playlist</label>
           <input id="search" placeholder="Start typing..." type="text" onChange={this.handleInput}/>
         </form>
-        <div className="results">
-
+        
+        <div className="results-container">
+          {this.state.results !== null && 
+            <SearchResults results={this.state.results} />
+          }
         </div>
       </div>
     );
