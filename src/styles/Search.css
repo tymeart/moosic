@@ -1,6 +1,8 @@
 .Search {
+  background-color: #121212;  
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
   width: 100%;
 }
 
@@ -8,7 +10,7 @@
   background-color: #2A2A2A;
   display: flex;
   flex-direction: column;
-  height: 200px;
+  height: 150px;
   justify-content: center;
   padding-left: 25px;
   padding-right: 25px;
@@ -33,7 +35,95 @@ input::placeholder {
   font-weight: 700;
 }
 
-.results {
-  background-color: #121212;
-  height: 100%;
+.results-container {
+  color: #FFF;
+  height: calc(100% - 200px);
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.SearchResults h2 {
+  font-size: 3.6rem;
+  text-align: center;
+}
+
+.top-results,
+.artist-results,
+.albums-results,
+.playlists-results {
+  padding-bottom: 20px;
+}
+
+.top-results {
+  display: flex;
+}
+
+.top-results__playlist {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.top-results__playlist img {
+  height: 230px;
+  width: 230px;
+}
+
+.top-results__playlist-details {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;  
+  margin: 10px;
+  text-align: center;
+}
+
+.top-results__playlist-details--name {
+  font-weight: 500;
+}
+
+.top-results__playlist-details--owner {
+  color: #B0AFAF;
+}
+
+.top-results__playlist-details--owner:hover {
+  color: #FFF;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-skip: ink;
+}
+
+.top-results__tracks {
+  flex-grow: 1;
+}
+
+.top-results__tracks ul {
+  list-style: none;
+  margin: 0;
+}
+
+.top-results__tracks ul li {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+}
+
+.top-results__tracks--name {
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+.top-results__tracks--artist {
+  color: #B0AFAF;
+}
+
+.top-results__tracks--artist:hover {
+  color: #FFF;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-skip: ink;
+}
+
+.top-results__tracks--duration {
+  color: #B0AFAF;
+  font-size: 1.6rem;  
 }

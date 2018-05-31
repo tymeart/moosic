@@ -3,11 +3,23 @@ import React from 'react';
 const SearchResults = ({ results }) => {
   console.log(results)
 
+  const convertTime = (ms) => {
+    let sec = ms / 1000;
+    let minutes = `${Math.trunc(sec / 60)}`;
+    let seconds = (sec % 60) < 10 ?
+      `0${Math.trunc(sec % 60)}` :
+      `${Math.trunc(sec % 60)}`;
+    return `${minutes}:${seconds}`;
+  }
+
   const firstFiveTracks = results.tracks.items.slice(0, 5).map(track => {
       return (
         <li key={track.id}>
-          <div>{track.name}</div>
-          <div>{track.artists[0].name}</div>
+          <div>
+            <div className="top-results__tracks--name">{track.name}</div>
+            <div className="top-results__tracks--artist">{track.artists[0].name}</div>
+          </div>
+          <div className="top-results__tracks--duration">{convertTime(track.duration_ms)}</div>
         </li>
       );
     }
@@ -57,7 +69,10 @@ const SearchResults = ({ results }) => {
       </div>
 
       <h2>Albums</h2>
+      <div className="albums-results"></div>
+
       <h2>Playlists</h2>
+      <div className="playlists-results"></div>
     </div>
   );
 }
