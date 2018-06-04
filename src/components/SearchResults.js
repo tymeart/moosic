@@ -3,6 +3,8 @@ import React from 'react';
 const SearchResults = ({ results }) => {
   console.log(results)
 
+  console.log(results.artists.items[1])
+
   const convertTime = (ms) => {
     let sec = ms / 1000;
     let minutes = `${Math.trunc(sec / 60)}`;
@@ -50,21 +52,26 @@ const SearchResults = ({ results }) => {
       <h2>Artists</h2>
       <div className="artist-results">
         <ul className="tilelist">
-          {results.artists.items.map(artist => {
+          {results.artists.items.filter(artist => {
             return (
-              <li
-                className="tile"
-                key={artist.id}
-              >
-                {/* <img
-                  className="thumbnail"
-                  alt={`Thumbnail for artist ${artist.name}`}
-                  src={`${artist.images[0].url}`}
-                /> */}
-                {artist.name}
-              </li>
+              (artist.images.length !== 0) && 
+              (artist.images[0].height === artist.images[0].width)
             );
-          })}
+          }).map(artist => {
+              return (
+                <li
+                  className="tile"
+                  key={artist.id}
+                >
+                  <img
+                    className="thumbnail"
+                    alt={`Thumbnail for artist ${artist.name}`}
+                    src={`${artist.images[0].url}`}
+                  />
+                  {artist.name}
+                </li>
+              );
+            })}
         </ul>
       </div>
 
