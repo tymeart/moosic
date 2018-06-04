@@ -66,11 +66,11 @@ const SearchResults = ({ results }) => {
                   key={artist.id}
                 >
                   <img
-                    className="thumbnail"
+                    className="artist thumbnail"
                     alt={`Thumbnail for artist ${artist.name}`}
                     src={`${artist.images[0].url}`}
                   />
-                  {artist.name}
+                  <div className="artist-results__artist">{artist.name}</div>
                 </li>
               );
             })}
