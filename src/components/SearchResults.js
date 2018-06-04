@@ -57,7 +57,9 @@ const SearchResults = ({ results }) => {
               (artist.images.length !== 0) && 
               (artist.images[0].height === artist.images[0].width)
             );
-          }).map(artist => {
+          })
+            .slice(0, 12)
+            .map(artist => {
               return (
                 <li
                   className="tile"
