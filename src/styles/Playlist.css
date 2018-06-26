@@ -1,0 +1,39 @@
+.Playlist {
+  color: #FFF;
+  font-size: 1.6rem;
+  width: 50%;
+}
+
+.Playlist ul {
+  list-style-type: none;
+}
+
+.playlist-track {
+  align-items: center;
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.playlist-track:hover {
+  background-color: rgba(0,0, 0, 0.3);
+  cursor: pointer;
+}
+
+.playlist-track--additionalArtists {
+  color: #B0AFAF;
+  font-size: 1.4rem;
+}
+
+.playlist-track--additionalArtists:hover {
+  color: #FFF;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-skip: ink;
+}
+
+.playlist-track--duration {
+  color: #B0AFAF;
+}
