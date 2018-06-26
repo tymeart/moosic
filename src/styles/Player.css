@@ -43,6 +43,7 @@
 .currently-playing-title:hover,
 .currently-playing-artist:hover {
   color: #FFF;
+  cursor: pointer;
   text-decoration: underline;
   text-decoration-skip: ink;
 }
