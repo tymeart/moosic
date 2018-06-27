@@ -14,7 +14,10 @@ const convertTime = (ms) => {
 
 class Playlist extends Component {
   render() {
-    let listItems = this.props.tracks.map(track => {
+    const { album, tracks } = this.props;
+    console.log('ALBUM: ', album);
+
+    let listItems = tracks.map(track => {
       return (
         <li
           className="playlist-track"
@@ -31,10 +34,18 @@ class Playlist extends Component {
       });
 
     return (
-      <div className="Playlist">
-        <ul>
-          {listItems}
-        </ul>
+      <div>
+        <div className="album-details">
+          <img src={`${album.images[0].url}`} alt={`Thumbnail for ${album.name}`} />
+          <div className="album-details--title">{album.name}</div>
+          <div className="album-details--artist">{album.artists[0].name}</div>
+          <div className="album-details--other">{album.releaseDate.slice(0, 5)} &middot; {tracks.length} songs</div>
+        </div>
+        <div className="Playlist">
+          <ul>
+            {listItems}
+          </ul>
+        </div>
       </div>
     );
   }
