@@ -17,24 +17,28 @@ import {
   Switch
 } from "react-router-dom";
 
+function isLoggedIn() {
+  return localStorage.getItem('accessToken') ? true : false;
+}
+
 class App extends Component {
   render() {
     return (
       <Router>
         <div className="App">
           <div className="App-top">
-            {this.props.isLoggedIn && <Navbar />}
+            {isLoggedIn() && <Navbar />}
             <Switch>
-              <PrivateRoute exact path="/" isLoggedIn={this.props.isLoggedIn} component={MainContent} />
+              <PrivateRoute exact path="/" isLoggedIn={isLoggedIn()} component={MainContent} />
               <Route path="/login" component={Login} />
               <Route path="/middle" component={Middle} />
-              <PrivateRoute path="/browse" isLoggedIn={this.props.isLoggedIn} component={Browse} />
-              <PrivateRoute path="/search" isLoggedIn={this.props.isLoggedIn} component={Search} />
-              <PrivateRoute path="/playlist" isLoggedIn={this.props.isLoggedIn} component={Playlist} />
+              <PrivateRoute path="/browse" isLoggedIn={isLoggedIn()} component={Browse} />
+              <PrivateRoute path="/search" isLoggedIn={isLoggedIn()} component={Search} />
+              <PrivateRoute path="/playlist" isLoggedIn={isLoggedIn()} component={Playlist} />
               <Route component={NoMatch} />
             </Switch>
           </div>
-          {this.props.isLoggedIn && <Player />}
+          {isLoggedIn() && <Player />}
         </div>
       </Router>
     );
