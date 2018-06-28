@@ -14,15 +14,15 @@ const convertTime = (ms) => {
 
 class Playlist extends Component {
   render() {
-    const { album, tracks } = this.props;
+    const { album, album: { tracklist } } = this.props.state;
     console.log('ALBUM: ', album);
 
-    let listItems = tracks.map(track => {
+    let listItems = tracklist.map(track => {
       return (
         <li
           className="playlist-track"
           key={track.name}
-          onClick={() => this.props.saveSongInfo(track, this.props.album)}
+          onClick={() => this.props.saveSongInfo(track, album)}
         >
           <div>
             <div className="playlist-track--title">{track.name}</div>
@@ -41,13 +41,13 @@ class Playlist extends Component {
               <img src={`${album.images[0].url}`} alt={`Thumbnail for ${album.name}`} />
               <div className="album-details--title">{album.name}</div>
               <div className="album-details--artist">{album.artists[0].name}</div>
-              <div className="album-details--other">{album.releaseDate.slice(0, 5)} &middot; {tracks.length} songs</div>
+              <div className="album-details--other">{album.releaseDate.slice(0, 5)} &middot; {tracklist.length} songs</div>
             </Fragment>
           }
         </div>
         <div className="Playlist">
           <ul>
-            { tracks.length > 0 ? listItems : null }
+            { tracklist.length > 0 ? listItems : null }
           </ul>
         </div>
       </div>

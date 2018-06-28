@@ -34,6 +34,13 @@ export const saveNewReleases = (newreleases) => {
   };
 };
 
+export const getAlbum = (album) => {
+  return {
+    type: types.GET_ALBUM,
+    payload: album
+  };
+};
+
 export const saveSongInfo = (track, album) => {
   return {
     type: types.SAVE_SONG_INFO,

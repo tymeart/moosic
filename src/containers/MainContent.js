@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Playlist from './Playlist';
-import { logOut } from '../actions/index';
+import { logOut, getAlbum } from '../actions/index';
 import '../styles/MainContent.css';
 
 class MainContent extends Component {
@@ -24,7 +24,7 @@ class MainContent extends Component {
     this.context.router.history.push('/login');
   }
 
-  getAlbum = () => {
+  fetchAlbum = () => {
     fetch('https://api.spotify.com/v1/albums/52fkHkIZ3QUHs90QuEGYDB',
       {
         headers: {
@@ -33,17 +33,16 @@ class MainContent extends Component {
       })
     .then(res => res.json())
     .then(data => {
-      this.setState({
-        album: {
+      this.props.getAlbum({
           artists: data.artists,
           id: data.id,
           name: data.name,
           images: data.images,
           type: data.album_type,
-          releaseDate: data.release_date
-        },
-        tracklist: data.tracks.items
+          releaseDate: data.release_date,
+          tracklist: data.tracks.items
       });
+      this.context.router.history.push('/playlist');
     });
   }
 
@@ -52,13 +51,7 @@ class MainContent extends Component {
       <div className="App-main">
         <main>
           <button onClick={this.logOutAndRedirect}>Log Out</button>
-          { this.state.album && 
-            <Playlist
-            album={this.state.album}
-            tracks={this.state.tracklist}
-            /> 
-          }
-          <button onClick={this.getAlbum}>Get Album</button>
+          <button onClick={this.fetchAlbum}>Get Album</button>
         </main>
       </div>
     );
@@ -73,6 +66,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    getAlbum: (album) => {
+      dispatch(getAlbum(album))
+    },
     logOut: () => {
       dispatch(logOut())
     }
