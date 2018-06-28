@@ -10,14 +10,7 @@ class MainContent extends Component {
     super(props);
 
     this.state = {
-      album: {
-        artists: [],
-        id: '',
-        name: '',
-        images: [],
-        type: '',
-        releaseDate: ''
-      },
+      album: null,
       tracklist: []
     }
   }
@@ -59,10 +52,12 @@ class MainContent extends Component {
       <div className="App-main">
         <main>
           <button onClick={this.logOutAndRedirect}>Log Out</button>
-          <Playlist
+          { this.state.album && 
+            <Playlist
             album={this.state.album}
             tracks={this.state.tracklist}
-          />
+            /> 
+          }
           <button onClick={this.getAlbum}>Get Album</button>
         </main>
       </div>

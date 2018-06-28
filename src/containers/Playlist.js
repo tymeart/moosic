@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { saveSongInfo } from '../actions/index';
 import '../styles/Playlist.css';
@@ -36,14 +36,18 @@ class Playlist extends Component {
     return (
       <div>
         <div className="album-details">
-          <img src={`${album.images[0].url}`} alt={`Thumbnail for ${album.name}`} />
-          <div className="album-details--title">{album.name}</div>
-          <div className="album-details--artist">{album.artists[0].name}</div>
-          <div className="album-details--other">{album.releaseDate.slice(0, 5)} &middot; {tracks.length} songs</div>
+          { album && 
+            <Fragment> 
+              <img src={`${album.images[0].url}`} alt={`Thumbnail for ${album.name}`} />
+              <div className="album-details--title">{album.name}</div>
+              <div className="album-details--artist">{album.artists[0].name}</div>
+              <div className="album-details--other">{album.releaseDate.slice(0, 5)} &middot; {tracks.length} songs</div>
+            </Fragment>
+          }
         </div>
         <div className="Playlist">
           <ul>
-            {listItems}
+            { tracks.length > 0 ? listItems : null }
           </ul>
         </div>
       </div>
