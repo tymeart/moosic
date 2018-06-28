@@ -20,6 +20,7 @@ class MainContent extends Component {
   }
 
   logOutAndRedirect = () => {
+    localStorage.removeItem('accessToken');
     this.props.logOut();
     this.context.router.history.push('/login');
   }

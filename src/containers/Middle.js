@@ -14,8 +14,11 @@ class Middle extends Component {
       const url = window.location.hash;
       accessToken = url.split('&')[0].split('=')[1];
 
-      localStorage.setItem('accessToken', accessToken);
-      this.context.router.history.push('/');
+      if( !localStorage.getItem('accessToken') ) {
+        localStorage.setItem('accessToken', accessToken);
+        this.props.logIn(accessToken);
+        this.context.router.history.push('/');
+      } 
     } else {
       console.log('ACCESS DENIED');
     }
