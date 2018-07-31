@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Playlist from './Playlist';
 import { logOut, getAlbum } from '../actions/index';
 import '../styles/MainContent.css';
 
@@ -20,7 +19,6 @@ class MainContent extends Component {
   }
 
   logOutAndRedirect = () => {
-    localStorage.removeItem('accessToken');
     this.props.logOut();
     this.context.router.history.push('/login');
   }

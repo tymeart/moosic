@@ -11,27 +11,13 @@ import Search from './Search';
 import Playlist from './Playlist';
 import NoMatch from '../components/NoMatch';
 import PrivateRoute from './PrivateRoute';
-import { logIn } from '../actions/index';
 import {
   BrowserRouter as Router,
   Route,
   Switch
 } from "react-router-dom";
 
-function isLoggedIn() {
-  console.log('THIS IS ISLOGGEDIN')
-  return localStorage.getItem('accessToken') ? true : false;
-}
-
 class App extends Component {
-    constructor(props) {
-      super(props);
-      if( isLoggedIn() ) {
-        this.props.dispatch(logIn(localStorage.getItem('accessToken')))            
-      }            
-    }
-
-
   render() {
     console.log('THIS IS IN RENDER')
     console.log(this.props.isLoggedIn)
