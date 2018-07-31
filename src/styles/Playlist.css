@@ -1,11 +1,49 @@
+.album-wrapper {
+  display: flex;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.album-details {
+  display: flex;
+  flex-direction: column;
+  line-height: 3.2rem;
+  padding: 40px;
+  text-align: center;
+}
+
+.album-details img {
+  height: 250px;
+  width: 250px;
+}
+
+.album-details--title {
+  color: #FFF;
+  font-size: 2.5rem;
+  font-weight: 700;
+  padding-top: 15px;
+}
+
+.album-details--artist {
+  color: #B0AFAF;
+}
+
+.album-details--other {
+  color: #B0AFAF;
+  text-transform: uppercase;
+}
+
 .Playlist {
   color: #FFF;
+  flex-grow: 1;
   font-size: 1.6rem;
+  padding-right: 30px;
   width: 50%;
 }
 
 .Playlist ul {
   list-style-type: none;
+  padding: 0;
 }
 
 .playlist-track {
@@ -27,6 +65,7 @@
   font-size: 1.4rem;
 }
 
+.album-details--artist:hover, 
 .playlist-track--additionalArtists:hover {
   color: #FFF;
   cursor: pointer;

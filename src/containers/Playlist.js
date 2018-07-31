@@ -34,14 +34,14 @@ class Playlist extends Component {
       });
 
     return (
-      <div>
+      <div className="album-wrapper">
         <div className="album-details">
           { album && 
             <Fragment> 
               <img src={`${album.images[0].url}`} alt={`Thumbnail for ${album.name}`} />
               <div className="album-details--title">{album.name}</div>
               <div className="album-details--artist">{album.artists[0].name}</div>
-              <div className="album-details--other">{album.releaseDate.slice(0, 5)} &middot; {tracklist.length} songs</div>
+              <div className="album-details--other">{album.releaseDate.slice(0, 4)} &middot; {tracklist.length} songs</div>
             </Fragment>
           }
         </div>
