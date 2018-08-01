@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { saveSongInfo } from '../actions/index';
+import { FaMusic, FaPlay } from 'react-icons/lib/fa';
 import '../styles/Playlist.css';
 
 const convertTime = (ms) => {
@@ -24,9 +25,15 @@ class Playlist extends Component {
           key={track.name}
           onClick={() => this.props.saveSongInfo(track, album)}
         >
-          <div>
-            <div className="playlist-track--title">{track.name}</div>
-            <div className="playlist-track--additionalArtists">{track.artists.length > 1 && track.artists[1].name}</div>
+          <div className="playlist-track-left">
+            <div className="playlist-track--playStatus">
+              <FaMusic className="music-note" />
+              <FaPlay className="play-icon" />
+            </div>
+            <div>
+              <div className="playlist-track--title">{track.name}</div>
+              <div className="playlist-track--additionalArtists">{track.artists.length > 1 && track.artists[1].name}</div>
+            </div>
           </div>
           <div className="playlist-track--duration">{convertTime(track.duration_ms)}</div>
         </li>

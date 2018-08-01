@@ -61,6 +61,27 @@
   cursor: pointer;
 }
 
+.playlist-track-left {
+  display: flex;
+}
+
+.playlist-track--playStatus {
+  margin-right: 15px;
+}
+
+.music-note {
+  color: #B0AFAF;  
+}
+
+.playlist-track .play-icon,
+.playlist-track:hover .music-note {
+  display: none;
+}
+
+.playlist-track:hover .play-icon {
+  display: inline;
+}
+
 .playlist-track--additionalArtists {
   color: #B0AFAF;
   font-size: 1.4rem;
