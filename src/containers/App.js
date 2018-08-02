@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../styles/App.css';
 import Login from '../components/Login';
-import Navbar from '../components/Navbar';
+import Navbar from '../containers/Navbar';
 import MainContent from './MainContent';
 import Middle from './Middle';
 import Browse from './Browse';
