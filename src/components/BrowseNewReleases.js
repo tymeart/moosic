@@ -16,7 +16,7 @@ const BrowseNewReleases = ({ newReleases }) => {
     console.log(newReleases)
     return (
         <div>
-            <h2>New albums & singles</h2>
+            <h2>New Albums & Singles</h2>
             <ul className="tilelist">
                 {newReleases.map(item => {
                     return (
