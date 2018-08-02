@@ -12,12 +12,14 @@ const BrowseFeatured = ({ playlists }) => {
                             className="tile"
                             key={item.name}
                         >
-                            <img
-                                className="thumbnail"
-                                alt={`Thumbnail for ${item.name} category`}
-                                src={`${item.images[0].url}`}
-                            />
-                            <div className="playlistName">{item.name}</div>
+                            <div className="thumbnail">
+                                <img
+                                    alt={`Thumbnail for ${item.name} category`}
+                                    src={`${item.images[0].url}`}
+                                />
+                                <div className="overlay"></div>
+                            </div>
+                            <div className="title">{item.name}</div>
                         </li>
                     );
                 })}

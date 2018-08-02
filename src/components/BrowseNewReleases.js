@@ -24,11 +24,13 @@ const BrowseNewReleases = ({ newReleases }) => {
                             className="tile"
                             key={item.name}
                         >
-                            <img
-                                className="thumbnail"
-                                alt={`Thumbnail for ${item.name} category`}
-                                src={`${item.images[1].url}`}
-                            />
+                            <div className="thumbnail">
+                                <img
+                                    alt={`Thumbnail for ${item.name} category`}
+                                    src={`${item.images[1].url}`}
+                                />
+                                <div className="overlay"></div>
+                            </div>
                             <div className="albumName" title={item.name}>{truncate(item.name)}</div>
                             <div className="artistName">{item.artists[0].name}</div>
                         </li>
