@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { logOut, getAlbum } from '../actions/index';
+import { getAlbum } from '../actions/index';
 import '../styles/MainContent.css';
 
 class MainContent extends Component {
@@ -16,11 +16,6 @@ class MainContent extends Component {
 
   static contextTypes = {
     router: PropTypes.object
-  }
-
-  logOutAndRedirect = () => {
-    this.props.logOut();
-    this.context.router.history.push('/login');
   }
 
   fetchAlbum = () => {
@@ -50,7 +45,6 @@ class MainContent extends Component {
     return (
       <div className="App-main">
         <main>
-          <button onClick={this.logOutAndRedirect}>Log Out</button>
           <button onClick={this.fetchAlbum}>Get Album</button>
         </main>
       </div>
@@ -68,9 +62,6 @@ const mapDispatchToProps = dispatch => {
   return {
     getAlbum: (album) => {
       dispatch(getAlbum(album))
-    },
-    logOut: () => {
-      dispatch(logOut())
     }
   };
 };
