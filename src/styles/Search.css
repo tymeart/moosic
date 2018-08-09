@@ -126,6 +126,11 @@ input::placeholder {
   font-size: 1.6rem;  
 }
 
+.thumbnail {
+  width: 150px;
+  height: 150px;
+}
+
 .artist.thumbnail {
   border-radius: 100%;
 }
