@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../styles/App.css';
 import Login from '../components/Login';
-import Navbar from '../containers/Navbar';
+import Navbar from './Navbar';
 import MainContent from './MainContent';
 import Middle from './Middle';
 import Browse from './Browse';
+import GenrePlaylists from '../components/GenrePlaylists';
 import Player from './Player';
 import Search from './Search';
 import Playlist from './Playlist';
@@ -19,8 +20,6 @@ import {
 
 class App extends Component {
   render() {
-    console.log('THIS IS IN RENDER')
-    console.log(this.props.isLoggedIn)
     return (
       <Router>
         <div className="App">
@@ -31,8 +30,9 @@ class App extends Component {
               <Route path="/login" component={Login} />
               <Route path="/middle" component={Middle} />
               <PrivateRoute path="/browse" isLoggedIn={this.props.isLoggedIn} component={Browse} />
+              <PrivateRoute path="/view/:id" isLoggedIn={this.props.isLoggedIn} component={GenrePlaylists} />
+              <PrivateRoute path="/playlist/:type/:id" isLoggedIn={this.props.isLoggedIn} component={Playlist} />
               <PrivateRoute path="/search" isLoggedIn={this.props.isLoggedIn} component={Search} />
-              <PrivateRoute path="/playlist" isLoggedIn={this.props.isLoggedIn} component={Playlist} />
               <Route component={NoMatch} />
             </Switch>
           </div>

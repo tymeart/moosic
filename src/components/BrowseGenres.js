@@ -1,6 +1,7 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
-const BrowseGenres = ({ categories }) => {
+const BrowseGenres = withRouter(({ categories, history }) => {
     console.log(categories)
     return (
         <div>
@@ -10,9 +11,12 @@ const BrowseGenres = ({ categories }) => {
                     return (
                         <li
                             className="tile"
-                            key={item.name}
+                            key={item.id}
                         >
-                            <div className="thumbnail">
+                            <div 
+                                className="thumbnail"
+                                onClick={ () => {history.push(`/view/${item.id}`, {genreName: item.name})} }
+                            >
                                 <img
                                     alt={`Thumbnail for ${item.name} category`}
                                     src={`${item.icons[0].url}`}
@@ -26,6 +30,6 @@ const BrowseGenres = ({ categories }) => {
             </ul>
         </div>
     );
-}
+});
 
 export default BrowseGenres;
