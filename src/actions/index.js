@@ -34,10 +34,17 @@ export const saveNewReleases = (newreleases) => {
   };
 };
 
-export const getAlbum = (album) => {
+export const saveAlbum = (album) => {
   return {
-    type: types.GET_ALBUM,
+    type: types.SAVE_ALBUM,
     payload: album
+  };
+};
+
+export const savePlaylist = (playlist) => {
+  return {
+    type: types.SAVE_PLAYLIST,
+    payload: playlist
   };
 };
 

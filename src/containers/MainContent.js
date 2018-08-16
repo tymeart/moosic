@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getAlbum } from '../actions/index';
+import { saveAlbum } from '../actions/index';
 import '../styles/MainContent.css';
 
 class MainContent extends Component {
@@ -60,8 +60,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAlbum: (album) => {
-      dispatch(getAlbum(album))
+    saveAlbum: (album) => {
+      dispatch(saveAlbum(album))
     }
   };
 };

@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { saveSongInfo } from '../actions/index';
-import { FaMusic, FaPlay } from 'react-icons/lib/fa';
+import { saveSongInfo, saveAlbum, savePlaylist } from '../actions/index';
 import '../styles/Playlist.css';
 
 const convertTime = (ms) => {
@@ -72,6 +71,12 @@ const mapDispatchToProps = dispatch => {
   return {
     saveSongInfo: (track, album) => {
       dispatch(saveSongInfo(track, album))
+    },
+    saveAlbum: album => {
+      dispatch(saveAlbum(album))
+    },
+    savePlaylist: playlist => {
+      dispatch(savePlaylist(playlist))
     }
   };
 };
