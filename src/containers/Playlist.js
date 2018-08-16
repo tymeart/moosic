@@ -1,62 +1,76 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { saveSongInfo, saveAlbum, savePlaylist } from '../actions/index';
+import AlbumPage from './AlbumPage';
+import PlaylistPage from './PlaylistPage';
 import '../styles/Playlist.css';
 
-const convertTime = (ms) => {
-  let sec = ms / 1000;
-  let minutes = `${Math.trunc(sec / 60)}`;
-  let seconds = (sec % 60) < 10 ?
-    `0${Math.trunc(sec % 60)}` :
-    `${Math.trunc(sec % 60)}`;
-  return `${minutes}:${seconds}`;
-}
+let url = '';
 
 class Playlist extends Component {
-  render() {
-    const { album, album: { tracklist } } = this.props.state;
-    console.log('ALBUM: ', album);
+  constructor(props) {
+    super(props);
+    
+    const params = this.props.match.params;
+    switch (params.type) {
+      case 'genres':
+        url = `https://api.spotify.com/v1/users/${this.props.location.state.ownerId}/playlists/${params.id}/tracks`;
+        break;
+      case 'featured':
+        url =`https://api.spotify.com/v1/users/spotify/playlists/${params.id}`;
+        break;
+      case 'newreleases':
+        url = `https://api.spotify.com/v1/albums/${params.id}`;
+        break;
+      default:
+        url = '';
+        break;
+    }
+  }
+  
+  componentDidMount() {
+    fetch(url,
+      {
+        headers: {
+          'Authorization': `Bearer ${this.props.state.accessToken}`
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log('playlist tracks: ', data.items);
+        // console.log(this.props.match.params.type)
+        // if (this.props.match.params.type === 'newreleases') {
+        //   this.props.saveAlbum({
+        //     artists: data.artists,
+        //     id: data.id,
+        //     name: data.name,
+        //     images: data.images,
+        //     type: data.album_type,
+        //     releaseDate: data.release_date,
+        //     tracklist: data.tracks.items
+        //   });
+        // }
 
-    let listItems = tracklist.map(track => {
-      return (
-        <li
-          className="playlist-track"
-          key={track.name}
-          onClick={() => this.props.saveSongInfo(track, album)}
-        >
-          <div className="playlist-track-left">
-            <div className="playlist-track--playStatus">
-              <FaMusic className="music-note" />
-              <FaPlay className="play-icon" />
-            </div>
-            <div>
-              <div className="playlist-track--title">{track.name}</div>
-              <div className="playlist-track--additionalArtists">{track.artists.length > 1 && track.artists[1].name}</div>
-            </div>
-          </div>
-          <div className="playlist-track--duration">{convertTime(track.duration_ms)}</div>
-        </li>
-        );
+        this.props.savePlaylist({
+          owner: this.props.location.state.ownerName,
+          id: this.props.match.params.id,
+          name: this.props.location.state.playlistName,
+          image: this.props.location.state.thumbnail,
+          type: 'playlist',
+          tracklist: data.items
+        });
+        // if (this.props.match.params.type === 'genres' || 'featured') {
+        // }
+        
       });
+  }
 
+  render() {
     return (
-      <div className="album-wrapper">
-        <div className="album-details">
-          { album && 
-            <Fragment> 
-              <img src={`${album.images[0].url}`} alt={`Thumbnail for ${album.name}`} />
-              <div className="album-details--title">{album.name}</div>
-              <div className="album-details--artist">{album.artists[0].name}</div>
-              <div className="album-details--other">{album.releaseDate.slice(0, 4)} &middot; {tracklist.length} songs</div>
-            </Fragment>
-          }
-        </div>
-        <div className="Playlist">
-          <ul>
-            { tracklist.length > 0 ? listItems : null }
-          </ul>
-        </div>
-      </div>
+      <Fragment>
+        {this.props.state.playlist && <PlaylistPage playlist={this.props.state.playlist} />}
+        {this.props.state.album && <AlbumPage album={this.props.state.album} /> }
+      </Fragment>
     );
   }
 }

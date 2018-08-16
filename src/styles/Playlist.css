@@ -1,10 +1,12 @@
-.album-wrapper {
+.album-wrapper,
+.playlist-wrapper {
   display: flex;
   overflow-y: auto;
   width: 100%;
 }
 
-.album-details {
+.album-details,
+.playlist-details {
   display: flex;
   flex-direction: column;
   line-height: 3.2rem;
@@ -12,23 +14,27 @@
   text-align: center;
 }
 
-.album-details img {
+.album-details img,
+.playlist-details img {
   height: 250px;
   width: 250px;
 }
 
-.album-details--title {
+.album-details--title,
+.playlist-details--title {
   color: #FFF;
   font-size: 2.5rem;
   font-weight: 700;
   padding-top: 15px;
 }
 
-.album-details--artist {
+.album-details--artist,
+.playlist-details--owner {
   color: #B0AFAF;
 }
 
-.album-details--other {
+.album-details--other,
+.playlist-details--other {
   color: #B0AFAF;
   text-transform: uppercase;
 }
@@ -82,12 +88,28 @@
   display: inline;
 }
 
-.playlist-track--additionalArtists {
+.playlist-track--artist-info {
   color: #B0AFAF;
   font-size: 1.4rem;
 }
 
+.playlist-track--artist, 
+.playlist-track--additionalArtists {
+  display: inline-block;
+}
+
+.playlist-track--artist {
+  margin-right: 3px;
+}
+
+.playlist-track--additionalArtists {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
 .album-details--artist:hover, 
+.playlist-details--owner:hover,
+.playlist-track--artist:hover, 
 .playlist-track--additionalArtists:hover {
   color: #FFF;
   cursor: pointer;
