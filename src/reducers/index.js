@@ -49,11 +49,13 @@ const userReducer = (state = initialState, action) => {
     case types.SAVE_ALBUM:
       return {
         ...state,
-        album: action.payload
+        album: action.payload,
+        playlist: null
       };
     case types.SAVE_PLAYLIST:
       return {
         ...state,
+        album: null,
         playlist: action.payload
       };
     case types.SAVE_SONG_INFO:
