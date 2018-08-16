@@ -37,7 +37,7 @@ class MainContent extends Component {
           releaseDate: data.release_date,
           tracklist: data.tracks.items
       });
-      this.context.router.history.push('/playlist');
+      this.context.router.history.push('/playlist/null');
     });
   }
 

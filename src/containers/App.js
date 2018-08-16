@@ -6,7 +6,7 @@ import Navbar from './Navbar';
 import MainContent from './MainContent';
 import Middle from './Middle';
 import Browse from './Browse';
-import GenrePlaylists from '../components/GenrePlaylists';
+import GenrePlaylists from './GenrePlaylists';
 import Player from './Player';
 import Search from './Search';
 import Playlist from './Playlist';
