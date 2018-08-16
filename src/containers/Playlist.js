@@ -17,7 +17,7 @@ class Playlist extends Component {
         url = `https://api.spotify.com/v1/users/${this.props.location.state.ownerId}/playlists/${params.id}/tracks`;
         break;
       case 'featured':
-        url =`https://api.spotify.com/v1/users/spotify/playlists/${params.id}`;
+        url =`https://api.spotify.com/v1/users/spotify/playlists/${params.id}/tracks`;
         break;
       case 'newreleases':
         url = `https://api.spotify.com/v1/albums/${params.id}`;
