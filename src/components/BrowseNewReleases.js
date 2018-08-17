@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 const truncate = (string) => {
     if (string.length > 34) {
@@ -12,33 +13,36 @@ const truncate = (string) => {
     return string;
 }
 
-const BrowseNewReleases = ({ newReleases }) => {
+const BrowseNewReleases = withRouter(({ newReleases, history }) => {
     console.log(newReleases)
     return (
         <div>
             <h2>New Albums & Singles</h2>
             <ul className="tilelist">
-                {newReleases.map(item => {
+                {newReleases.map(album => {
                     return (
                         <li
                             className="tile"
-                            key={item.name}
+                            key={album.name}
                         >
-                            <div className="thumbnail">
+                            <div 
+                                className="thumbnail"
+                                onClick={() => { history.push(`/playlist/newreleases/${album.id}`) }}
+                            >
                                 <img
-                                    alt={`Thumbnail for ${item.name} category`}
-                                    src={`${item.images[1].url}`}
+                                    alt={`Thumbnail for the album ${album.name}`}
+                                    src={`${album.images[1].url}`}
                                 />
                                 <div className="overlay"></div>
                             </div>
-                            <div className="albumName" title={item.name}>{truncate(item.name)}</div>
-                            <div className="artistName">{item.artists[0].name}</div>
+                            <div className="albumName" title={album.name}>{truncate(album.name)}</div>
+                            <div className="artistName">{album.artists[0].name}</div>
                         </li>
                     );
                 })}
             </ul>
         </div>
     );
-}
+});
 
 export default BrowseNewReleases;

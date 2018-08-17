@@ -37,30 +37,27 @@ class Playlist extends Component {
       })
       .then(res => res.json())
       .then(data => {
-        console.log('playlist tracks: ', data.items);
-        // console.log(this.props.match.params.type)
-        // if (this.props.match.params.type === 'newreleases') {
-        //   this.props.saveAlbum({
-        //     artists: data.artists,
-        //     id: data.id,
-        //     name: data.name,
-        //     images: data.images,
-        //     type: data.album_type,
-        //     releaseDate: data.release_date,
-        //     tracklist: data.tracks.items
-        //   });
-        // }
-
-        this.props.savePlaylist({
-          owner: this.props.location.state.ownerName,
-          id: this.props.match.params.id,
-          name: this.props.location.state.playlistName,
-          image: this.props.location.state.thumbnail,
-          type: 'playlist',
-          tracklist: data.items
-        });
-        // if (this.props.match.params.type === 'genres' || 'featured') {
-        // }
+        console.log('album data: ', data);
+        if (this.props.match.params.type === 'newreleases') {
+          this.props.saveAlbum({
+            artists: data.artists,
+            id: data.id,
+            name: data.name,
+            images: data.images,
+            type: data.album_type,
+            releaseDate: data.release_date,
+            tracklist: data.tracks.items
+          });
+        } else if (this.props.match.params.type === 'genres' || 'featured') {
+          this.props.savePlaylist({
+            owner: this.props.location.state.ownerName,
+            id: this.props.match.params.id,
+            name: this.props.location.state.playlistName,
+            image: this.props.location.state.thumbnail,
+            type: 'playlist',
+            tracklist: data.items
+          });
+        }
         
       });
   }

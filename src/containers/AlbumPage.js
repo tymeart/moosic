@@ -15,7 +15,7 @@ const AlbumPage = ({ album }) => {
     return (
       <li
         className="playlist-track"
-        key={track.track.id}
+        key={track.id}
       >
         <div className="playlist-track-left">
           <div className="playlist-track--playStatus">
@@ -23,15 +23,13 @@ const AlbumPage = ({ album }) => {
             <FaPlay className="play-icon" />
           </div>
           <div>
-            <div className="playlist-track--title">{track.track.name}</div>
+            <div className="playlist-track--title">{track.name}</div>
             <div className="playlist-track--artist-info">
-              {track.track.artists[0].name && <div className="playlist-track--artist">{track.track.artists[0].name} </div>}
-              {track.track.artists.length > 1 && <span className="">&middot;</span>}
-              {track.track.artists.length > 1 && <div className="playlist-track--additionalArtists">{track.track.artists[1].name}</div>}
+              {track.artists.length > 1 && <div className="playlist-track--additionalArtists">{track.artists[1].name}</div> }
             </div>
           </div>
         </div>
-        <div className="playlist-track--duration">{convertTime(track.track.duration_ms)}</div>
+        <div className="playlist-track--duration">{convertTime(track.duration_ms)}</div>
       </li>
     );
   });
