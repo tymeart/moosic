@@ -28,7 +28,7 @@ class MainContent extends Component {
     .then(res => res.json())
     .then(data => {
       // store album info in redux
-      this.props.getAlbum({
+      this.props.saveAlbum({
           artists: data.artists,
           id: data.id,
           name: data.name,

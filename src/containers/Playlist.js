@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { saveSongInfo, saveAlbum, savePlaylist } from '../actions/index';
+import { saveSongInfo, togglePlayStatus, saveAlbum, savePlaylist } from '../actions/index';
 import AlbumPage from './AlbumPage';
 import PlaylistPage from './PlaylistPage';
 import '../styles/Playlist.css';
@@ -37,7 +37,7 @@ class Playlist extends Component {
       })
       .then(res => res.json())
       .then(data => {
-        console.log('album data: ', data);
+        console.log('Playlist data: ', data);
         if (this.props.match.params.type === 'newreleases') {
           this.props.saveAlbum({
             artists: data.artists,
@@ -65,8 +65,24 @@ class Playlist extends Component {
   render() {
     return (
       <Fragment>
-        {this.props.state.playlist && <PlaylistPage playlist={this.props.state.playlist} />}
-        {this.props.state.album && <AlbumPage album={this.props.state.album} /> }
+        {this.props.state.playlist && 
+          <PlaylistPage 
+            playlist={this.props.state.playlist} 
+            currentlyPlayingSrc={this.props.state.currentlyPlayingSrc}
+            isPlaying={this.props.state.isPlaying}
+            saveSongInfo={this.props.saveSongInfo}
+            togglePlayStatus={this.props.togglePlayStatus}
+          />
+        }
+        {this.props.state.album && 
+          <AlbumPage 
+            album={this.props.state.album} 
+            currentlyPlayingSrc={this.props.state.currentlyPlayingSrc}
+            isPlaying={this.props.state.isPlaying}
+            saveSongInfo={this.props.saveSongInfo}
+            togglePlayStatus={this.props.togglePlayStatus}
+          /> 
+        }
       </Fragment>
     );
   }
@@ -82,6 +98,9 @@ const mapDispatchToProps = dispatch => {
   return {
     saveSongInfo: (track, album) => {
       dispatch(saveSongInfo(track, album))
+    },
+    togglePlayStatus: () => {
+      dispatch(togglePlayStatus())
     },
     saveAlbum: album => {
       dispatch(saveAlbum(album))

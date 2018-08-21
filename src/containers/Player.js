@@ -20,21 +20,23 @@ class Player extends Component {
   }
 
   togglePlayPause = () => {
-    let playPromise = this.audioEl.current.play();
-    if (playPromise !== undefined) {
-      playPromise.then(_ => {
-        if (!isNaN(this.audioEl.current.duration)) {
-          this.props.updateSongDuration(this.formatTime(this.audioEl.current.duration));
-        }
-        if (this.props.state.isPlaying) {
-          this.audioEl.current.pause();
-          this.props.togglePlayStatus();
-        } else {
-          this.audioEl.current.play();
-          this.props.togglePlayStatus();
-        }
-        })
-      .catch(e => console.log(e));
+    if (this.props.state.currentlyPlayingSrc !== null) {
+      let playPromise = this.audioEl.current.play();
+      if (playPromise !== undefined) {
+        playPromise.then(_ => {
+          if (!isNaN(this.audioEl.current.duration)) {
+            this.props.updateSongDuration(this.formatTime(this.audioEl.current.duration));
+          }
+          if (this.props.state.isPlaying) {
+            this.audioEl.current.pause();
+            this.props.togglePlayStatus();
+          } else {
+            this.audioEl.current.play();
+            this.props.togglePlayStatus();
+          }
+          })
+        .catch(e => console.log(e));
+      }
     }
   }
 
@@ -65,7 +67,7 @@ class Player extends Component {
           {currentlyPlayingAlbum &&
             <span>
               <img
-                src={currentlyPlayingAlbum.images[2].url}
+              src={currentlyPlayingAlbum.images[0] || currentlyPlayingAlbum.images[2].url}
                 alt={`Cover art for ${currentlyPlayingAlbum.name}`}
               />
               <div className="currently-playing-info">

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { togglePlayStatus } from '../actions/index';
 import {
   FaPlayCircleO,
   FaPauseCircleO,
@@ -45,12 +44,4 @@ const mapStateToProps = state => {
   };
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    togglePlayStatus: () => {
-      dispatch(togglePlayStatus())
-    }
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Controls);
+export default connect(mapStateToProps)(Controls);

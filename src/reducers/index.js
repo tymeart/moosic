@@ -8,7 +8,7 @@ const initialState = {
   newReleases: [],
   album: null,
   playlist: null,
-  currentlyPlayingSrc: '',
+  currentlyPlayingSrc: null,
   currentlyPlayingTrack: null,
   currentlyPlayingAlbum: null,
   playerDurationDisplay: '0:00',

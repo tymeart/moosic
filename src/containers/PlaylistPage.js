@@ -10,12 +10,20 @@ const convertTime = (ms) => {
   return `${minutes}:${seconds}`;
 }
 
-const PlaylistPage = ({ playlist }) => {
+const PlaylistPage = ({ playlist, currentlyPlayingSrc, isPlaying, saveSongInfo, togglePlayStatus }) => {
+  const handleTrackClick = (track, currentPlaylist) => {
+    saveSongInfo(track, currentPlaylist);
+    if (track.preview_url !== null && isPlaying === false) {
+      togglePlayStatus();
+    }
+  }
+  // console.log(playlist)
   let tracks = playlist.tracklist.map(track => {
     return (
       <li
         className="playlist-track"
         key={track.track.id}
+        onClick={() => handleTrackClick(track.track, {images: [playlist.image], name: playlist.name})}
       >
         <div className="playlist-track-left">
           <div className="playlist-track--playStatus">
