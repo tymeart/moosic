@@ -64,6 +64,18 @@ export const togglePlayStatus = () => {
   };
 }
 
+export const startSync = () => {
+  return {
+    type: types.START_SYNC
+  };
+}
+
+export const endStartSync = () => {
+  return {
+    type: types.END_START_SYNC
+  };
+}
+
 export const updateSongProgress = (currentTimeDisplay, progressBarWidth) => {
   return {
     type: types.UPDATE_SONG_PROGRESS,

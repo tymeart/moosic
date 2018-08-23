@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Controls from './Controls';
-import { togglePlayStatus, updateSongProgress, updateSongDuration } from '../actions/index';
+import { endStartSync, togglePlayStatus, updateSongProgress, updateSongDuration } from '../actions/index';
 import '../styles/Player.css';
 
 class Player extends Component {
@@ -17,6 +17,17 @@ class Player extends Component {
       let progressRatio = this.audioEl.current.currentTime / this.audioEl.current.duration;
       this.props.updateSongProgress(currentTimeToDisplay, `${progressRatio * 400}px`);
     });
+  }
+
+  componentDidUpdate() {
+    // track was clicked on
+    if (this.props.state.startSync) {
+      // start playing
+      this.togglePlayPause();
+      // toggle off so they don't interupt playback
+      this.props.togglePlayStatus();
+      this.props.endStartSync();
+    }
   }
 
   togglePlayPause = () => {
@@ -99,6 +110,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    endStartSync: () => {
+      dispatch(endStartSync())
+    },
     togglePlayStatus: () => {
       dispatch(togglePlayStatus())
     },

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { saveSongInfo, togglePlayStatus, saveAlbum, savePlaylist } from '../actions/index';
+import { saveSongInfo, startSync, togglePlayStatus, saveAlbum, savePlaylist } from '../actions/index';
 import AlbumPage from './AlbumPage';
 import PlaylistPage from './PlaylistPage';
 import '../styles/Playlist.css';
@@ -68,18 +68,18 @@ class Playlist extends Component {
         {this.props.state.playlist && 
           <PlaylistPage 
             playlist={this.props.state.playlist} 
-            currentlyPlayingSrc={this.props.state.currentlyPlayingSrc}
             isPlaying={this.props.state.isPlaying}
             saveSongInfo={this.props.saveSongInfo}
+            startSync={this.props.startSync}
             togglePlayStatus={this.props.togglePlayStatus}
           />
         }
         {this.props.state.album && 
           <AlbumPage 
             album={this.props.state.album} 
-            currentlyPlayingSrc={this.props.state.currentlyPlayingSrc}
             isPlaying={this.props.state.isPlaying}
             saveSongInfo={this.props.saveSongInfo}
+            startSync={this.props.startSync}
             togglePlayStatus={this.props.togglePlayStatus}
           /> 
         }
@@ -96,6 +96,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    startSync: () => {
+      dispatch(startSync())
+    },
     saveSongInfo: (track, album) => {
       dispatch(saveSongInfo(track, album))
     },

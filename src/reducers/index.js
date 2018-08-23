@@ -14,7 +14,8 @@ const initialState = {
   playerDurationDisplay: '0:00',
   playerCurrentTimeDisplay: '0:00',
   playerProgressBarWidth: '0px',
-  isPlaying: false
+  isPlaying: false,
+  startSync: false
 };
 
 const userReducer = (state = initialState, action) => {
@@ -70,6 +71,16 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         isPlaying: !state.isPlaying
+      };
+    case types.START_SYNC:
+      return {
+        ...state,
+        startSync: true
+      };
+    case types.END_START_SYNC:
+      return {
+        ...state,
+        startSync: false
       };
     case types.UPDATE_SONG_PROGRESS:
       return {

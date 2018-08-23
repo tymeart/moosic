@@ -10,11 +10,12 @@ const convertTime = (ms) => {
   return `${minutes}:${seconds}`;
 }
 
-const PlaylistPage = ({ playlist, currentlyPlayingSrc, isPlaying, saveSongInfo, togglePlayStatus }) => {
+const PlaylistPage = ({ playlist, isPlaying, saveSongInfo, startSync, togglePlayStatus }) => {
   const handleTrackClick = (track, currentPlaylist) => {
     saveSongInfo(track, currentPlaylist);
     if (track.preview_url !== null && isPlaying === false) {
       togglePlayStatus();
+      startSync();
     }
   }
   // console.log(playlist)
