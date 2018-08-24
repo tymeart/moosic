@@ -78,7 +78,7 @@ class Player extends Component {
           {currentlyPlayingAlbum &&
             <span>
               <img
-              src={currentlyPlayingAlbum.images[0] || currentlyPlayingAlbum.images[2].url}
+              src={currentlyPlayingAlbum.images[0]}
                 alt={`Cover art for ${currentlyPlayingAlbum.name}`}
               />
               <div className="currently-playing-info">
