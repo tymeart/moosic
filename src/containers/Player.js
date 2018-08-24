@@ -22,11 +22,15 @@ class Player extends Component {
   componentDidUpdate() {
     // track was clicked on
     if (this.props.state.startSync) {
-      // start playing
-      this.togglePlayPause();
-      // toggle off so they don't interupt playback
-      this.props.togglePlayStatus();
-      this.props.endStartSync();
+      if (this.props.state.currentlyPlayingSrc === null) {
+        this.props.endStartSync();
+      } else {
+        // start playing
+        this.togglePlayPause();
+        // toggle off so they don't interupt playback
+        this.props.togglePlayStatus();
+        this.props.endStartSync();
+      }
     }
   }
 

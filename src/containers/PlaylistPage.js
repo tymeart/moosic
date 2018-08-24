@@ -13,12 +13,14 @@ const convertTime = (ms) => {
 const PlaylistPage = ({ playlist, isPlaying, saveSongInfo, startSync, togglePlayStatus }) => {
   const handleTrackClick = (track, currentPlaylist) => {
     saveSongInfo(track, currentPlaylist);
-    if (track.preview_url !== null && isPlaying === false) {
-      togglePlayStatus();
+    if (track.preview_url !== null) {
       startSync();
+      if (isPlaying === false) {
+        togglePlayStatus();
+      }
     }
   }
-  // console.log(playlist)
+
   let tracks = playlist.tracklist.map(track => {
     return (
       <li
