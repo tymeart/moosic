@@ -1,9 +1,0 @@
-.App {
-  display: flex;
-  flex-direction: column;
-}
-
-.App-top {
-  display: flex;
-  height: calc(100vh - 90px);
-}
