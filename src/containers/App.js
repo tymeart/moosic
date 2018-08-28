@@ -21,7 +21,7 @@ import {
 class App extends Component {
   render() {
     return (
-      <Router basename={process.env.REACT_APP_PUBLIC_URL}>
+      <Router basename={process.env.PUBLIC_URL}>
         <div className="App">
           <div className="App-top">
             {this.props.isLoggedIn && <Navbar />}
