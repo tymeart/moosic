@@ -45,7 +45,7 @@ class MainContent extends Component {
     return (
       <div className="App-main">
         <main>
-          <button onClick={this.fetchAlbum}>Get Album</button>
+          This page is under construction. :p
         </main>
       </div>
     );
