@@ -54,7 +54,7 @@ const PlaylistPage = ({ playlist, isPlaying, saveSongInfo, startSync, togglePlay
           <img src={playlist.image} alt={`Thumbnail for ${playlist.name}`} />
           <div className="playlist-details--title">{playlist.name}</div>
           <div className="playlist-details--owner">{playlist.owner}</div>
-          <div className="playlist-details--other">{playlist.tracklist.length} songs</div>
+          <div className="playlist-details--other">{playlist.tracklist.length} {playlist.tracklist.length === 1 ? 'song' : 'songs'}</div>
         </Fragment>
       </div>
 

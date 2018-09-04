@@ -50,7 +50,7 @@ const AlbumPage = ({ album, isPlaying, saveSongInfo, startSync, togglePlayStatus
           <img src={`${album.images[0].url}`} alt={`Thumbnail for ${album.name}`} />
           <div className="album-details--title">{album.name}</div>
           <div className="album-details--artist">{album.artists[0].name}</div>
-          <div className="album-details--other">{album.releaseDate.slice(0, 4)} &middot; {album.tracklist.length} songs</div>
+          <div className="album-details--other">{album.releaseDate.slice(0, 4)} &middot; {album.tracklist.length} {album.tracklist.length === 1 ? 'song' : 'songs'}</div>
         </Fragment>
       </div>
 
