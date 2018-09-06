@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import '../styles/App.css';
 import Login from '../components/Login';
 import Navbar from './Navbar';
-import MainContent from './MainContent';
 import Middle from './Middle';
 import Browse from './Browse';
 import GenrePlaylists from './GenrePlaylists';
