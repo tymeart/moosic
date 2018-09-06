@@ -26,7 +26,7 @@ class App extends Component {
           <div className="App-top">
             {this.props.isLoggedIn && <Navbar />}
             <Switch>
-              <PrivateRoute exact path="/" isLoggedIn={this.props.isLoggedIn} component={MainContent} />
+              <PrivateRoute exact path="/" isLoggedIn={this.props.isLoggedIn} component={Browse} />
               <Route path="/login" component={Login} />
               <Route path="/middle" component={Middle} />
               <PrivateRoute path="/browse" isLoggedIn={this.props.isLoggedIn} component={Browse} />
