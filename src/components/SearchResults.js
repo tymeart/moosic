@@ -15,12 +15,29 @@ const SearchResults = withRouter(({ results, isPlaying, saveSongInfo, startSync,
     return `${minutes}:${seconds}`;
   }
 
+  const handleTrackClick = (track, currentPlaylist) => {
+    saveSongInfo(track, currentPlaylist);
+    if (track.preview_url !== null) {
+      startSync();
+      if (isPlaying === false) {
+        togglePlayStatus();
+      }
+    }
+  }
+
   const firstFiveTracks = results.tracks.items.slice(0, 5).map(track => {
       return (
-        <li key={track.id}>
+        <li 
+          key={track.id}
+          onClick={() => handleTrackClick(track, { images: [track.album.images[0].url], name: track.name })}  
+        >
           <div>
             <div className="top-results__tracks--name">{track.name}</div>
-            <div className="top-results__tracks--artist">{track.artists[0].name}</div>
+            <div className="top-results__tracks--artist-info">
+              <div className="top-results__tracks--artist">{track.artists[0].name}</div>
+              <span>&middot;</span>
+              <div className="top-results__tracks--album">{track.album.name}</div>
+            </div>
           </div>
           <div className="top-results__tracks--duration">{convertTime(track.duration_ms)}</div>
         </li>

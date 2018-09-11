@@ -90,7 +90,6 @@ input::placeholder {
 }
 
 .top-results__playlist-details--owner,
-.top-results__tracks--artist,
 .albums-results__artist,
 .playlists-results__owner {
   color: #B0AFAF;
@@ -98,6 +97,7 @@ input::placeholder {
 
 .top-results__playlist-details--owner:hover,
 .top-results__tracks--artist:hover,
+.top-results__tracks--album:hover,
 .albums-results__artist:hover,
 .playlists-results__owner:hover {
   color: #FFF;
@@ -121,9 +121,27 @@ input::placeholder {
   padding: 12px;
 }
 
+.top-results__tracks ul li:hover {
+  cursor: pointer;
+}
+
 .top-results__tracks--name {
   font-size: 1.6rem;
   line-height: 1.5;
+}
+
+.top-results__tracks--artist-info {
+  color: #B0AFAF;
+  display: flex;
+}
+
+.top-results__tracks--artist {
+  margin-right: 3px;
+}
+
+.top-results__tracks--album {
+  margin-left: 3px;
+  margin-right: 3px;
 }
 
 .top-results__tracks--duration {
