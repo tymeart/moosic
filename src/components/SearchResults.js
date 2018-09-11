@@ -58,18 +58,24 @@ const SearchResults = withRouter(({ results, isPlaying, saveSongInfo, startSync,
       <h2>Top Results</h2>
       <div className="top-results">
         <div className="top-results__playlist">
-          <img 
-            src={`${results.playlists.items[0].images[0].url}`} 
-            alt={`Thumbnail for ${results.playlists.items[0].name} playlist`}
-            onClick={() => { history.push(`/playlist/featured/${results.playlists.items[0].id}`,
-              {
-                ownerId: results.playlists.items[0].owner.id,
-                ownerName: results.playlists.items[0].owner.display_name,
-                playlistName: results.playlists.items[0].name,
-                thumbnail: results.playlists.items[0].images[0].url
-              }) 
+          <div 
+            className="thumbnail large"
+            onClick={() => {
+              history.push(`/playlist/featured/${results.playlists.items[0].id}`,
+                {
+                  ownerId: results.playlists.items[0].owner.id,
+                  ownerName: results.playlists.items[0].owner.display_name,
+                  playlistName: results.playlists.items[0].name,
+                  thumbnail: results.playlists.items[0].images[0].url
+                })
             }}  
-          />
+          >
+            <img 
+              src={`${results.playlists.items[0].images[0].url}`} 
+              alt={`Thumbnail for ${results.playlists.items[0].name} playlist`}
+            />
+            <div className="overlay"></div>
+          </div>
           <div className="top-results__playlist-details">
             <div 
               className="top-results__playlist-details--name"
@@ -112,11 +118,14 @@ const SearchResults = withRouter(({ results, isPlaying, saveSongInfo, startSync,
                   className="tile"
                   key={artist.id}
                 >
-                  <img
-                    className="artist thumbnail"
-                    alt={`Thumbnail for artist ${artist.name}`}
-                    src={`${artist.images[0].url}`}
-                  />
+                  <div className="thumbnail circle">
+                    <img
+                      className="artist thumbnail"
+                      alt={`Thumbnail for artist ${artist.name}`}
+                      src={`${artist.images[0].url}`}
+                    />
+                    <div className="overlay"></div>
+                  </div>
                   <div className="artist-results__artist">{artist.name}</div>
                 </li>
               );
@@ -140,11 +149,16 @@ const SearchResults = withRouter(({ results, isPlaying, saveSongInfo, startSync,
                 className="tile"
                 key={album.id}
               >
-                <img
+                <div
                   className="thumbnail"
-                  alt={`Thumbnail for album ${album.name}`}
-                  src={`${album.images[0].url}`}
-                />
+                  onClick={() => { history.push(`/playlist/newreleases/${album.id}`) }}
+                >
+                  <img
+                    alt={`Thumbnail for album ${album.name}`}
+                    src={`${album.images[0].url}`}
+                  />
+                  <div className="overlay"></div>
+                </div>
                 <div className="albums-results__album">{album.name}</div>
                 <div className="albums-results__artist">{album.artists[0].name}</div>
               </li>
@@ -170,12 +184,38 @@ const SearchResults = withRouter(({ results, isPlaying, saveSongInfo, startSync,
                 className="tile"
                 key={playlist.id}
               >
-                <img
+                <div
                   className="thumbnail"
-                  alt={`Thumbnail for playlist ${playlist.name}`}
-                  src={`${playlist.images[0].url}`}
-                />
-                <div className="playlists-results__playlist">{playlist.name}</div>
+                  onClick={() => {
+                    history.push(`/playlist/featured/${playlist.id}`,
+                      {
+                        ownerId: playlist.owner.id,
+                        ownerName: playlist.owner.display_name,
+                        playlistName: playlist.name,
+                        thumbnail: playlist.images[0].url
+                      })
+                  }}
+                >
+                  <img
+                    alt={`Thumbnail for playlist ${playlist.name}`}
+                    src={`${playlist.images[0].url}`}
+                  />
+                  <div className="overlay"></div>
+                </div>
+                <div 
+                  className="playlists-results__playlist"
+                  onClick={() => {
+                    history.push(`/playlist/featured/${playlist.id}`,
+                      {
+                        ownerId: playlist.owner.id,
+                        ownerName: playlist.owner.display_name,
+                        playlistName: playlist.name,
+                        thumbnail: playlist.images[0].url
+                      })
+                  }}
+                >
+                  {playlist.name}
+                </div>
                 <div className="playlists-results__owner">{playlist.owner.display_name}</div>
               </li>
             );

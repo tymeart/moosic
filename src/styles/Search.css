@@ -62,6 +62,23 @@ input::placeholder {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+}
+
+/* original overlay styles in Browse.css */
+.thumbnail.large {
+  height: 230px;
+  width: 230px;
+}
+
+.thumbnail.large .overlay {
+  height: 230px;
+  top: 9px;
+  width: 230px;
+}
+
+.thumbnail.circle .overlay {
+  border-radius: 50%;
 }
 
 .top-results__playlist img {
@@ -87,6 +104,11 @@ input::placeholder {
 .albums-results__album,
 .playlists-results__playlist {
   font-weight: 500;
+}
+
+.playlists-results__playlist:hover,
+.artist-results__artist:hover {
+  cursor: pointer;
 }
 
 .top-results__playlist-details--owner,
