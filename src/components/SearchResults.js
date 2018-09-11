@@ -1,9 +1,10 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
-const SearchResults = ({ results }) => {
+const SearchResults = withRouter(({ results, history }) => {
   console.log(results)
 
-  console.log(results.artists.items[1])
+  console.log(results.artists.items)
 
   const convertTime = (ms) => {
     let sec = ms / 1000;
@@ -34,10 +35,31 @@ const SearchResults = ({ results }) => {
         <div className="top-results__playlist">
           <img 
             src={`${results.playlists.items[0].images[0].url}`} 
-            alt={`Thumbnail for ${results.playlists.items[0].name} playlist`}  
+            alt={`Thumbnail for ${results.playlists.items[0].name} playlist`}
+            onClick={() => { history.push(`/playlist/featured/${results.playlists.items[0].id}`,
+              {
+                ownerId: results.playlists.items[0].owner.id,
+                ownerName: results.playlists.items[0].owner.display_name,
+                playlistName: results.playlists.items[0].name,
+                thumbnail: results.playlists.items[0].images[0].url
+              }) 
+            }}  
           />
           <div className="top-results__playlist-details">
-            <div className="top-results__playlist-details--name">{results.playlists.items[0].name}</div>
+            <div 
+              className="top-results__playlist-details--name"
+              onClick={() => {
+                history.push(`/playlist/featured/${results.playlists.items[0].id}`,
+                  {
+                    ownerId: results.playlists.items[0].owner.id,
+                    ownerName: results.playlists.items[0].owner.display_name,
+                    playlistName: results.playlists.items[0].name,
+                    thumbnail: results.playlists.items[0].images[0].url
+                  })
+              }}
+            >
+              {results.playlists.items[0].name}
+            </div>
             <div className="top-results__playlist-details--owner">{results.playlists.items[0].owner.display_name}</div>
           </div>
         </div>
@@ -137,6 +159,6 @@ const SearchResults = ({ results }) => {
       </div>
     </div>
   );
-}
+});
 
 export default SearchResults;

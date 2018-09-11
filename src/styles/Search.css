@@ -69,6 +69,11 @@ input::placeholder {
   width: 230px;
 }
 
+.top-results__playlist img:hover,
+.top-results__playlist-details--name:hover {
+  cursor: pointer;
+}
+
 .top-results__playlist-details {
   display: flex;
   flex-direction: column;
