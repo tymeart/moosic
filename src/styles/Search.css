@@ -125,6 +125,27 @@ input::placeholder {
   cursor: pointer;
 }
 
+.top-results__tracks-left {
+  display: flex;
+}
+
+.top-results__tracks--playStatus {
+  margin-right: 15px;
+}
+
+.music-note {
+  color: #B0AFAF;  
+}
+
+.top-result-track .play-icon,
+.top-result-track:hover .music-note {
+  display: none;
+}
+
+.top-result-track:hover .play-icon {
+  display: inline;
+}
+
 .top-results__tracks--name {
   font-size: 1.6rem;
   line-height: 1.5;
