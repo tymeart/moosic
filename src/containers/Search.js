@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { saveSongInfo, startSync, togglePlayStatus } from '../actions/index';
 import SearchResults from '../components/SearchResults';
 import '../styles/Search.css';
 
@@ -52,7 +53,13 @@ class Search extends Component {
         
         <div className="results-container">
           {this.state.results !== null && 
-            <SearchResults results={this.state.results} />
+            <SearchResults 
+              results={this.state.results} 
+              isPlaying={this.props.isPlaying}
+              saveSongInfo={this.props.saveSongInfo}
+              startSync={this.props.startSync}
+              togglePlayStatus={this.props.togglePlayStatus}
+            />
           }
         </div>
       </div>
@@ -62,8 +69,23 @@ class Search extends Component {
 
 const mapStateToProps = state => {
   return {
-    accessToken: state.accessToken
+    accessToken: state.accessToken,
+    isPlaying: state.isPlaying
   };
 }
 
-export default connect(mapStateToProps)(Search);
+const mapDispatchToProps = dispatch => {
+  return {
+    startSync: () => {
+      dispatch(startSync())
+    },
+    saveSongInfo: (track, album) => {
+      dispatch(saveSongInfo(track, album))
+    },
+    togglePlayStatus: () => {
+      dispatch(togglePlayStatus())
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-const SearchResults = withRouter(({ results, history }) => {
+const SearchResults = withRouter(({ results, isPlaying, saveSongInfo, startSync, togglePlayStatus, history }) => {
   console.log(results)
 
   console.log(results.artists.items)
