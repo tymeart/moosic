@@ -81,7 +81,7 @@
 }
 
 .overlay {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.6);
   display: none;
   height: 150px;
   position: absolute;
@@ -90,8 +90,16 @@
 }
 
 .thumbnail:hover .overlay {
+  align-items: center;
   cursor: pointer;
-  display: block;
+  display: flex;
+  justify-content: center;
+}
+
+.thumbnail:hover .overlay svg {
+  height: 70px;
+  opacity: 0.95;
+  width: 70px;
 }
 
 .tile .title:hover {

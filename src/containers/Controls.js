@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-  FaPlayCircleO,
-  FaPauseCircleO,
-  FaStepBackward,
-  FaStepForward
-} from 'react-icons/lib/fa';
+import { FaStepBackward, FaStepForward } from 'react-icons/lib/fa';
+import { MdPlayCircleOutline, MdPauseCircleOutline } from 'react-icons/lib/md';
 import '../styles/Controls.css';
 
 class Controls extends Component {
@@ -15,7 +11,7 @@ class Controls extends Component {
         <div className="Controls-buttons">
           <button><FaStepBackward title="Previous" /></button>
           <button className="play-pause" onClick={this.props.togglePlayPause}>
-            {this.props.state.isPlaying ? <FaPauseCircleO title="Pause" /> : <FaPlayCircleO title="Play" />}
+            {this.props.state.isPlaying ? <MdPauseCircleOutline title="Pause" /> : <MdPlayCircleOutline title="Play" />}
           </button>
           <button><FaStepForward title="Next" /></button>
         </div>

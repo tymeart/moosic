@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { FaMusic, FaPlay } from 'react-icons/lib/fa';
+import { MdPlayCircleOutline } from 'react-icons/lib/md';
 
 const SearchResults = withRouter(({ results, isPlaying, saveSongInfo, startSync, togglePlayStatus, history }) => {
   console.log(results)
@@ -74,7 +75,7 @@ const SearchResults = withRouter(({ results, isPlaying, saveSongInfo, startSync,
               src={`${results.playlists.items[0].images[0].url}`} 
               alt={`Thumbnail for ${results.playlists.items[0].name} playlist`}
             />
-            <div className="overlay"></div>
+            <div className="overlay"><MdPlayCircleOutline /></div>
           </div>
           <div className="top-results__playlist-details">
             <div 
@@ -157,6 +158,7 @@ const SearchResults = withRouter(({ results, isPlaying, saveSongInfo, startSync,
                     alt={`Thumbnail for album ${album.name}`}
                     src={`${album.images[0].url}`}
                   />
+                  <div className="overlay"><MdPlayCircleOutline /></div>
                 </div>
                 <div 
                   className="albums-results__album"
@@ -164,7 +166,6 @@ const SearchResults = withRouter(({ results, isPlaying, saveSongInfo, startSync,
                 >
                   {album.name}
                 </div>
-                <div className="albums-results__album">{album.name}</div>
                 <div className="albums-results__artist">{album.artists[0].name}</div>
               </li>
             );
@@ -205,7 +206,7 @@ const SearchResults = withRouter(({ results, isPlaying, saveSongInfo, startSync,
                     alt={`Thumbnail for playlist ${playlist.name}`}
                     src={`${playlist.images[0].url}`}
                   />
-                  <div className="overlay"></div>
+                  <div className="overlay"><MdPlayCircleOutline /></div>
                 </div>
                 <div 
                   className="playlists-results__playlist"

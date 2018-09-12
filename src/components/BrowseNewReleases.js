@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { MdPlayCircleOutline } from 'react-icons/lib/md';
 
 const truncate = (string) => {
     if (string.length > 34) {
@@ -33,7 +34,7 @@ const BrowseNewReleases = withRouter(({ newReleases, history }) => {
                                     alt={`Thumbnail for the album ${album.name}`}
                                     src={`${album.images[1].url}`}
                                 />
-                                <div className="overlay"></div>
+                                <div className="overlay"><MdPlayCircleOutline /></div>
                             </div>
                             <div className="albumName" title={album.name}>{truncate(album.name)}</div>
                             <div className="artistName">{album.artists[0].name}</div>

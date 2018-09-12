@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { MdPlayCircleOutline } from 'react-icons/lib/md';
 
 const BrowseFeatured = withRouter(({ playlists, history }) => {
     console.log(playlists)
@@ -28,7 +29,7 @@ const BrowseFeatured = withRouter(({ playlists, history }) => {
                                     alt={`Thumbnail for ${playlist.name} playlist`}
                                     src={`${playlist.images[0].url}`}
                                 />
-                                <div className="overlay"></div>
+                                <div className="overlay"><MdPlayCircleOutline /></div>
                             </div>
                             <div className="title">{playlist.name}</div>
                         </li>
