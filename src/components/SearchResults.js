@@ -157,7 +157,12 @@ const SearchResults = withRouter(({ results, isPlaying, saveSongInfo, startSync,
                     alt={`Thumbnail for album ${album.name}`}
                     src={`${album.images[0].url}`}
                   />
-                  <div className="overlay"></div>
+                </div>
+                <div 
+                  className="albums-results__album"
+                  onClick={() => { history.push(`/playlist/newreleases/${album.id}`) }}
+                >
+                  {album.name}
                 </div>
                 <div className="albums-results__album">{album.name}</div>
                 <div className="albums-results__artist">{album.artists[0].name}</div>
