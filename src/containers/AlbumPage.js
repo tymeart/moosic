@@ -10,13 +10,16 @@ const convertTime = (ms) => {
   return `${minutes}:${seconds}`;
 }
 
-const AlbumPage = ({ album, isPlaying, saveSongInfo, startSync, togglePlayStatus }) => {
+const AlbumPage = ({ album, isPlaying, saveSongInfo, startSync, togglePlayStatus, updateRecentlyPlayed }) => {
   const handleTrackClick = (track, currentAlbum) => {
     saveSongInfo(track, currentAlbum);
     if (track.preview_url !== null && isPlaying === false) {
       togglePlayStatus();
       startSync();
     }
+
+    updateRecentlyPlayed(currentAlbum);
+
   }
 
   let tracks = album.tracklist.map(track => {
@@ -24,7 +27,16 @@ const AlbumPage = ({ album, isPlaying, saveSongInfo, startSync, togglePlayStatus
       <li
         className="playlist-track"
         key={track.id}
-        onClick={() => handleTrackClick(track, {images: [album.images[2].url], name: album.name})}
+        onClick={() => 
+          handleTrackClick(
+            track, 
+            {
+              id: album.id,
+              images: [album.images[2].url], 
+              name: album.name,
+              type: album.type
+            }
+          )}
       >
         <div className="playlist-track-left">
           <div className="playlist-track--playStatus">

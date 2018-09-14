@@ -15,7 +15,8 @@ const initialState = {
   playerCurrentTimeDisplay: '0:00',
   playerProgressBarWidth: '0px',
   isPlaying: false,
-  startSync: false
+  startSync: false,
+  recentlyPlayed: []
 };
 
 const userReducer = (state = initialState, action) => {
@@ -92,7 +93,28 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         playerDurationDisplay: action.payload.durationDisplay
+      };
+    case types.UPDATE_RECENTLY_PLAYED:
+      const newRecentlyPlayed = [...state.recentlyPlayed];
+      const positionOfAlbum = newRecentlyPlayed.indexOf(action.payload.newAlbum);
+
+      // album doesn't exist in the list already
+      if (positionOfAlbum === -1) {
+        newRecentlyPlayed.unshift(action.payload.newAlbum);
+        if (newRecentlyPlayed.length > 3) {
+          newRecentlyPlayed.pop();
+        }
       }
+
+      // album does exist in the list already
+      if (positionOfAlbum > -1) {
+        newRecentlyPlayed.splice(positionOfAlbum, 1).unshift(action.payload.newAlbum);
+      }
+
+      return {
+        ...state,
+        recentlyPlayed: newRecentlyPlayed
+      };
     default:
       return initialState;
   }

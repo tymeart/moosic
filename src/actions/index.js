@@ -94,3 +94,12 @@ export const updateSongDuration = (durationDisplay) => {
     }
   };
 }
+
+export const updateRecentlyPlayed = (album) => {
+  return {
+    type: types.UPDATE_RECENTLY_PLAYED,
+    payload: {
+      newAlbum: album
+    }
+  };
+}
