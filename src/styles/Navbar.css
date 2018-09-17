@@ -53,6 +53,15 @@
   margin-bottom: 15px;
 }
 
+.navbar-main .album-name {
+  margin-bottom: 5px;
+}
+
+.navbar-main .album-name:hover {
+  color: #FFF;
+  cursor: pointer;
+}
+
 .navbar-main .album-type {
   font-size: 0.8em;
   letter-spacing: 1px;

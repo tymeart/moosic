@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { logOut } from '../actions/index';
 import { FaSearch, FaHome, FaMusic } from 'react-icons/lib/fa';
 import '../styles/Navbar.css';
+import RecentlyPlayed from '../components/RecentlyPlayed';
 
 class Navbar extends Component {
   static contextTypes = {
@@ -26,18 +27,7 @@ class Navbar extends Component {
           <NavLink to="/collection" activeClassName="selected"><FaMusic />Your Music</NavLink>
           <h2>Recently Played</h2>
           <ul>
-            <li>
-              <div>Unimagined</div>
-              <div className="album-type">Album</div>
-            </li>
-            <li>
-              <div>Ground Dweller</div>
-              <div className="album-type">Album</div>
-            </li>
-            <li>
-              <div>Before I Cave In</div>
-              <div className="album-type">Album</div>
-            </li>
+            <RecentlyPlayed albums={this.props.state.recentlyPlayed} />
           </ul>
         </div>
 
