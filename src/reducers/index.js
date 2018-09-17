@@ -96,19 +96,24 @@ const userReducer = (state = initialState, action) => {
       };
     case types.UPDATE_RECENTLY_PLAYED:
       const newRecentlyPlayed = [...state.recentlyPlayed];
-      const positionOfAlbum = newRecentlyPlayed.indexOf(action.payload.newAlbum);
+      const albumPosition = newRecentlyPlayed
+        .map(album => album.id)
+        .indexOf(action.payload.newAlbum.id);
 
-      // album doesn't exist in the list already
-      if (positionOfAlbum === -1) {
+      // album doesn't exist in the list yet
+      if (albumPosition === -1) {
+        // add to front of list
         newRecentlyPlayed.unshift(action.payload.newAlbum);
+        // keep list 3 items long
         if (newRecentlyPlayed.length > 3) {
           newRecentlyPlayed.pop();
         }
       }
 
       // album does exist in the list already
-      if (positionOfAlbum > -1) {
-        newRecentlyPlayed.splice(positionOfAlbum, 1).unshift(action.payload.newAlbum);
+      if (albumPosition > -1) {
+        newRecentlyPlayed.splice(albumPosition, 1); // remove from current position
+        newRecentlyPlayed.unshift(action.payload.newAlbum); // add to front of list
       }
 
       return {
