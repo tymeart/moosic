@@ -2,20 +2,12 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { FaMusic, FaPlay } from 'react-icons/lib/fa';
 import { MdPlayCircleOutline } from 'react-icons/lib/md';
+import { convertTime } from '../utilities/convertTime';
 
 const SearchResults = withRouter(({ results, isPlaying, saveSongInfo, startSync, togglePlayStatus, history }) => {
   console.log(results)
 
   console.log(results.artists.items)
-
-  const convertTime = (ms) => {
-    let sec = ms / 1000;
-    let minutes = `${Math.trunc(sec / 60)}`;
-    let seconds = (sec % 60) < 10 ?
-      `0${Math.trunc(sec % 60)}` :
-      `${Math.trunc(sec % 60)}`;
-    return `${minutes}:${seconds}`;
-  }
 
   const handleTrackClick = (track, currentPlaylist) => {
     saveSongInfo(track, currentPlaylist);
