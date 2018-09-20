@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Controls from './Controls';
 import { endStartSync, togglePlayStatus, updateSongProgress, updateSongDuration } from '../actions/index';
 import '../styles/Player.css';
+import { listify } from '../utilities/listify';
 
 class Player extends Component {
   constructor(props) {
@@ -64,17 +65,9 @@ class Player extends Component {
   }
 
   render() {
-    let artistsList = '';
     const { currentlyPlayingTrack, currentlyPlayingAlbum } = this.props.state;
 
-    if (currentlyPlayingTrack) {
-      artistsList = `${currentlyPlayingTrack.artists[0].name}`;
-      if (currentlyPlayingTrack.artists.length > 1) {
-        for (let i = 1; i < currentlyPlayingTrack.artists.length; i++) {
-          artistsList += `, ${currentlyPlayingTrack.artists[i].name}`
-        }
-      }
-    }
+    let artistsList = currentlyPlayingTrack ? listify(currentlyPlayingTrack.artists) : '';
 
     return (
       <div className="player">
@@ -82,7 +75,7 @@ class Player extends Component {
           {currentlyPlayingAlbum &&
             <span>
               <img
-              src={currentlyPlayingAlbum.images[0]}
+                src={currentlyPlayingAlbum.images[0]}
                 alt={`Cover art for ${currentlyPlayingAlbum.name}`}
               />
               <div className="currently-playing-info">
