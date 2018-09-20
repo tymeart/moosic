@@ -1,18 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { MdPlayCircleOutline } from 'react-icons/lib/md';
-
-const truncate = (string) => {
-    if (string.length > 34) {
-        var newStr = string.substring(0, 33);
-        if (newStr[newStr.length - 1] === ' ') {
-            return newStr.slice(0, 34) + '...';
-        } else {
-            return newStr + '...';
-        }
-    }
-    return string;
-}
+import { truncate } from '../utilities/truncate';
 
 const BrowseNewReleases = withRouter(({ newReleases, history }) => {
     console.log(newReleases)
@@ -24,7 +13,7 @@ const BrowseNewReleases = withRouter(({ newReleases, history }) => {
                     return (
                         <li
                             className="tile"
-                            key={album.name}
+                            key={album.id}
                         >
                             <div 
                                 className="thumbnail"
