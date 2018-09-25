@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { MdPlayCircleOutline } from 'react-icons/lib/md';
 import { truncate } from '../utilities/truncate';
+import { listify } from '../utilities/listify';
 
 const BrowseNewReleases = withRouter(({ newReleases, history }) => {
     console.log(newReleases)
@@ -26,7 +27,7 @@ const BrowseNewReleases = withRouter(({ newReleases, history }) => {
                                 <div className="overlay"><MdPlayCircleOutline /></div>
                             </div>
                             <div className="albumName" title={album.name}>{truncate(album.name)}</div>
-                            <div className="artistName">{album.artists[0].name}</div>
+                            <div className="artistName">{listify(album.artists)}</div>
                         </li>
                     );
                 })}

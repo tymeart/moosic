@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { FaMusic, FaPlay } from 'react-icons/lib/fa';
 import { MdPlayCircleOutline } from 'react-icons/lib/md';
 import { convertTime } from '../utilities/convertTime';
+import { listify } from '../utilities/listify';
 
 const SearchResults = withRouter(({ results, isPlaying, saveSongInfo, startSync, togglePlayStatus, history }) => {
   console.log(results)
@@ -34,7 +35,7 @@ const SearchResults = withRouter(({ results, isPlaying, saveSongInfo, startSync,
             <div>
               <div className="top-results__tracks--name">{track.name}</div>
               <div className="top-results__tracks--artist-info">
-                <div className="top-results__tracks--artist">{track.artists[0].name}</div>
+                <div className="top-results__tracks--artist">{listify(track.artists)}</div>
                 <span>&middot;</span>
                 <div className="top-results__tracks--album">{track.album.name}</div>
               </div>
@@ -158,7 +159,7 @@ const SearchResults = withRouter(({ results, isPlaying, saveSongInfo, startSync,
                 >
                   {album.name}
                 </div>
-                <div className="albums-results__artist">{album.artists[0].name}</div>
+                <div className="albums-results__artist">{listify(album.artists)}</div>
               </li>
             );
           })}

@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { FaMusic, FaPlay } from 'react-icons/lib/fa';
 import { convertTime } from '../utilities/convertTime';
+import { listify } from '../utilities/listify';
 
 const PlaylistPage = ({ playlist, isPlaying, saveSongInfo, startSync, togglePlayStatus, updateRecentlyPlayed }) => {
   const handleTrackClick = (track, currentPlaylist) => {
@@ -41,7 +42,7 @@ const PlaylistPage = ({ playlist, isPlaying, saveSongInfo, startSync, togglePlay
             <div className="playlist-track--artist-info">
               {track.track.artists[0].name && <div className="playlist-track--artist">{track.track.artists[0].name} </div>}
               {track.track.artists.length > 1 && <span>&middot;</span>}
-              {track.track.artists.length > 1 && <div className="playlist-track--additionalArtists">{track.track.artists[1].name}</div>}
+              {track.track.artists.length > 1 && <div className="playlist-track--additionalArtists">{listify(track.track.artists.slice(1))}</div>}
             </div>
           </div>
         </div>
