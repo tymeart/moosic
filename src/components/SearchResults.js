@@ -4,6 +4,7 @@ import { FaMusic, FaPlay } from 'react-icons/lib/fa';
 import { MdPlayCircleOutline } from 'react-icons/lib/md';
 import { convertTime } from '../utilities/convertTime';
 import { listify } from '../utilities/listify';
+import { truncate } from '../utilities/truncate';
 
 const SearchResults = withRouter(({ results, isPlaying, saveSongInfo, startSync, togglePlayStatus, history }) => {
   console.log(results)
@@ -157,9 +158,9 @@ const SearchResults = withRouter(({ results, isPlaying, saveSongInfo, startSync,
                   className="albums-results__album"
                   onClick={() => { history.push(`/playlist/newreleases/${album.id}`) }}
                 >
-                  {album.name}
+                  {truncate(album.name)}
                 </div>
-                <div className="albums-results__artist">{listify(album.artists)}</div>
+                <div className="albums-results__artist">{truncate(listify(album.artists))}</div>
               </li>
             );
           })}
@@ -213,7 +214,7 @@ const SearchResults = withRouter(({ results, isPlaying, saveSongInfo, startSync,
                       })
                   }}
                 >
-                  {playlist.name}
+                  {truncate(playlist.name)}
                 </div>
                 <div className="playlists-results__owner">{playlist.owner.display_name}</div>
               </li>

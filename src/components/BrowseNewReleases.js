@@ -27,7 +27,7 @@ const BrowseNewReleases = withRouter(({ newReleases, history }) => {
                                 <div className="overlay"><MdPlayCircleOutline /></div>
                             </div>
                             <div className="albumName" title={album.name}>{truncate(album.name)}</div>
-                            <div className="artistName">{listify(album.artists)}</div>
+                            <div className="artistName">{truncate(listify(album.artists))}</div>
                         </li>
                     );
                 })}
