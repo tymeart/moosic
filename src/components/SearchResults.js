@@ -33,9 +33,9 @@ const SearchResults = withRouter(({ results, isPlaying, saveSongInfo, startSync,
               <FaMusic className="music-note" />
               <FaPlay className="play-icon" />
             </div>
-            <div>
-              <div className="top-results__tracks--name">{track.name}</div>
-              <div className="top-results__tracks--artist-info">
+            <div className="truncate">
+              <div className="top-results__tracks--name truncate">{track.name}</div>
+              <div className="top-results__tracks--artist-info truncate">
                 <div className="top-results__tracks--artist">{listify(track.artists)}</div>
                 <span>&middot;</span>
                 <div className="top-results__tracks--album">{track.album.name}</div>

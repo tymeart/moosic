@@ -5,7 +5,7 @@ const RecentlyPlayed = ({albums}) => {
     albums.map(album => {
       return (
         <li key={album.id}>
-          <div className="album-name">{ album.name }</div>
+          <div className="album-name truncate">{ album.name }</div>
           <div className="album-type">{ album.type }</div>
         </li>
       );

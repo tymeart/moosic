@@ -70,6 +70,7 @@
 
 .playlist-track-left {
   display: flex;
+  min-width: 0;
 }
 
 .playlist-track--playStatus {
@@ -87,6 +88,10 @@
 
 .playlist-track:hover .play-icon {
   display: inline;
+}
+
+.playlist-track--title {
+  margin-right: 10px;
 }
 
 .playlist-track--artist-info {
@@ -120,4 +125,10 @@
 
 .playlist-track--duration {
   color: #B0AFAF;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

@@ -35,9 +35,9 @@ const AlbumPage = ({ album, isPlaying, saveSongInfo, startSync, togglePlayStatus
             <FaMusic className="music-note" />
             <FaPlay className="play-icon" />
           </div>
-          <div>
-            <div className="playlist-track--title">{track.name}</div>
-            <div className="playlist-track--artist-info">
+          <div className="truncate">
+            <div className="playlist-track--title truncate">{track.name}</div>
+            <div className="playlist-track--artist-info truncate">
               {track.artists.length > 1 && <div className="playlist-track--additionalArtists">{listify(track.artists.slice(1))}</div> }
             </div>
           </div>

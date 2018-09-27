@@ -63,18 +63,18 @@ input::placeholder {
   flex-direction: column;
   justify-content: center;
   position: relative;
+  width: 300px;
 }
 
 /* original overlay styles in Browse.css */
 .thumbnail.large {
-  height: 230px;
-  width: 230px;
+  height: 250px;
+  width: 250px;
 }
 
 .thumbnail.large .overlay {
-  height: 230px;
-  top: 9px;
-  width: 230px;
+  height: 250px;
+  width: 250px;
 }
 
 .thumbnail.circle .overlay {
@@ -82,8 +82,8 @@ input::placeholder {
 }
 
 .top-results__playlist img {
-  height: 230px;
-  width: 230px;
+  height: 250px;
+  width: 250px;
 }
 
 .top-results__playlist img:hover,
@@ -129,7 +129,7 @@ input::placeholder {
 }
 
 .top-results__tracks {
-  flex-grow: 1;
+  min-width: 0;
 }
 
 .top-results__tracks ul {
@@ -139,6 +139,7 @@ input::placeholder {
 
 .top-results__tracks ul li {
   display: flex;
+  height: 60px;
   justify-content: space-between;
   padding: 12px;
 }
@@ -148,7 +149,9 @@ input::placeholder {
 }
 
 .top-results__tracks-left {
+  align-items: baseline;
   display: flex;
+  min-width: 0;
 }
 
 .top-results__tracks--playStatus {
@@ -171,11 +174,13 @@ input::placeholder {
 .top-results__tracks--name {
   font-size: 1.6rem;
   line-height: 1.5;
+  margin-right: 10px;
 }
 
 .top-results__tracks--artist-info {
   color: #B0AFAF;
   display: flex;
+  margin-right: 10px;
 }
 
 .top-results__tracks--artist {
@@ -199,4 +204,10 @@ input::placeholder {
 
 .artist.thumbnail {
   border-radius: 100%;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
