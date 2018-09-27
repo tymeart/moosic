@@ -59,9 +59,9 @@ input::placeholder {
 }
 
 .top-results__playlist {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   position: relative;
   width: 300px;
 }
@@ -129,6 +129,7 @@ input::placeholder {
 }
 
 .top-results__tracks {
+  flex-grow: 1;
   min-width: 0;
 }
 
