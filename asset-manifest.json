@@ -1,6 +1,13 @@
 {
-  "main.css": "static/css/main.dc65a788.css",
-  "main.css.map": "static/css/main.dc65a788.css.map",
-  "main.js": "static/js/main.43a76e2e.js",
-  "main.js.map": "static/js/main.43a76e2e.js.map"
+  "main.css": "/moosic/static/css/main.6e39d9d3.chunk.css",
+  "main.js": "/moosic/static/js/main.69d92e95.chunk.js",
+  "main.js.map": "/moosic/static/js/main.69d92e95.chunk.js.map",
+  "static/js/1.9b2d4e11.chunk.js": "/moosic/static/js/1.9b2d4e11.chunk.js",
+  "static/js/1.9b2d4e11.chunk.js.map": "/moosic/static/js/1.9b2d4e11.chunk.js.map",
+  "runtime~main.js": "/moosic/static/js/runtime~main.bf35184a.js",
+  "runtime~main.js.map": "/moosic/static/js/runtime~main.bf35184a.js.map",
+  "static/css/main.6e39d9d3.chunk.css.map": "/moosic/static/css/main.6e39d9d3.chunk.css.map",
+  "index.html": "/moosic/index.html",
+  "precache-manifest.525284ad8227630e120fc6a9e776d9ed.js": "/moosic/precache-manifest.525284ad8227630e120fc6a9e776d9ed.js",
+  "service-worker.js": "/moosic/service-worker.js"
 }
